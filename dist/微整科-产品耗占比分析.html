@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微整科 — 产品耗占比分析</title>
+<link rel="icon" href="data:,">
+  <script type="module" crossorigin src="/assets/productAnalysis-C7ekoVmO.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="stylesheet" crossorigin href="/assets/weizhengke-Dy8bwEct.css">
+  <link rel="stylesheet" crossorigin href="/assets/product-analysis-5GBrVD40.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-inner">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-top">
+        <div class="sidebar-brand-icon">BI</div>
+        <div class="sidebar-brand-name">耗材成本看板</div>
+      </div>
+      <div class="sidebar-brand-sub">总览 + 科室三级分析结构</div>
+    </div>
+
+    <div class="nav-label">Overview</div>
+    <button class="nav-home" type="button" onclick="window.location='index.html'">
+      <span class="nav-home-icon"></span>
+      <span>首页总览</span>
+    </button>
+
+    <div class="nav-label">Departments</div>
+    <div class="nav-group" style="border-color:#1A1A1A;">
+      <button class="nav-group-hd" type="button" onclick="window.location='weizhengke.html'" style="background:#1A1A1A;color:#fff;border-radius:14px 14px 0 0;">
+        <span class="nav-group-main">
+          <span class="nav-group-dot" style="background:rgba(255,255,255,0.5);"></span>
+          <span>微整科</span>
+        </span>
+        <span class="nav-toggle" style="background:rgba(255,255,255,0.12);color:#fff;font-size:11px;">总览</span>
+      </button>
+      <div class="nav-group-body">
+        <button class="nav-link active" type="button">产品耗占分析</button>
+        <button class="nav-link" type="button" onclick="window.location='微整科-医生耗占分析.html'">医生耗占分析</button>
+        <button class="nav-link" type="button" onclick="window.location='微整科-咨询耗占分析.html'">咨询耗占分析</button>
+      </div>
+    </div>
+
+    <div class="nav-group collapsed">
+      <button class="nav-group-hd" type="button" onclick="window.location='pifuke.html'">
+        <span class="nav-group-main">
+          <span class="nav-group-dot" style="background:#111827;"></span>
+          <span>皮肤科</span>
+        </span>
+        <span class="nav-toggle" style="font-size:11px;color:#999;">进入</span>
+      </button>
+      <div class="nav-group-body">
+        <button class="nav-link" type="button">产品耗占分析</button>
+        <button class="nav-link" type="button">医生耗占分析</button>
+        <button class="nav-link" type="button">咨询耗占分析</button>
+      </div>
+    </div>
+
+    <div class="nav-group collapsed">
+      <button class="nav-group-hd" type="button" onclick="toggleNavGroup(this)">
+        <span class="nav-group-main">
+          <span class="nav-group-dot" style="background:#EA580C;"></span>
+          <span>整形科</span>
+        </span>
+        <span class="nav-toggle">+</span>
+      </button>
+      <div class="nav-group-body">
+        <button class="nav-link" type="button">科室总览</button>
+        <button class="nav-link" type="button">产品耗占分析</button>
+        <button class="nav-link" type="button">医生耗占分析</button>
+        <button class="nav-link" type="button">咨询耗占分析</button>
+      </div>
+    </div>
+
+    <div class="nav-tip">
+      当前：微整科 · 产品耗占分析<br>
+      数据源：Daily-cphc 2026-03-31
+    </div>
+  </div>
+</aside>
+
+<div class="content-shell">
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-icon">📊</div>
+      <div>
+        <div class="brand-name">微整科产品耗占分析</div>
+        <div class="brand-meta">产品维度 · 成本率排序 · 目标达成追踪 · 数据更新：2026-04-22 08:05</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="filter-pill">
+        <span class="filter-label">月份</span>
+        <select class="filter-select">
+          <option>2026-03</option>
+          <option>2026-02</option>
+          <option>2026-01</option>
+        </select>
+      </div>
+      <button class="btn btn-ghost">⬇ 导出报告</button>
+      <button class="btn btn-dark" onclick="openProductAI()">✦ AI 助手</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="breadcrumb">
+      <a href="index.html">首页总览</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="weizhengke.html">微整科</a>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-current">产品耗占比分析</span>
+    </div>
+
+    <div class="section-hd">
+      <div class="section-num">1</div>
+      <span class="section-title">耗占比对比</span>
+      <span class="section-sub">纯耗材，不含麻醉，微整填充维度</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="grid-4">
+      <div class="kpi-card product-kpi-card">
+        <div class="kc-title">玻尿酸耗占比</div>
+        <div class="kc-main">40.59%</div>
+        <div class="kc-divider"></div>
+        <div class="kc-row">
+          <span class="kc-row-label">较前三期均值</span>
+          <span class="kc-val-green">-1.23%</span>
+          <span class="badge badge-green">▼ 优秀</span>
+        </div>
+        <div class="kc-target">目标值：<span>≤42.50%</span></div>
+      </div>
+
+      <div class="kpi-card product-kpi-card primary">
+        <div class="kc-title">胶原产品耗占比</div>
+        <div class="kc-main danger">24.58%</div>
+        <div class="kc-divider"></div>
+        <div class="kc-row">
+          <span class="kc-row-label">较前三期均值</span>
+          <span class="kc-val-red">+1.67%</span>
+          <span class="badge badge-red">▲ 偏高</span>
+        </div>
+        <div class="kc-target">目标值：<span>≤22.91%</span></div>
+      </div>
+
+      <div class="kpi-card product-kpi-card">
+        <div class="kc-title">自有产品耗占比</div>
+        <div class="kc-main">7.27%</div>
+        <div class="kc-divider"></div>
+        <div class="kc-row">
+          <span class="kc-row-label">较前三期均值</span>
+          <span class="kc-val-green">-0.84%</span>
+          <span class="badge badge-green">▼ 优秀</span>
+        </div>
+        <div class="kc-target">目标值：<span>≤8.50%</span></div>
+      </div>
+
+      <div class="kpi-card product-kpi-card primary">
+        <div class="kc-title">再生产品耗占比</div>
+        <div class="kc-main danger">26.99%</div>
+        <div class="kc-divider"></div>
+        <div class="kc-row">
+          <span class="kc-row-label">较前三期均值</span>
+          <span class="kc-val-red">+1.03%</span>
+          <span class="badge badge-red">▲ 偏高</span>
+        </div>
+        <div class="kc-target">目标值：<span>≤25.96%</span></div>
+      </div>
+    </div>
+
+    <div id="anomaly-heading" class="section-hd">
+      <div class="section-num red">2</div>
+      <span class="section-title">异常预警</span>
+      <span class="section-sub">按成本率由高到低排序 · 默认展示前5条</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div id="anomaly-section" class="product-detail-grid">
+      <div class="alert-card product-detail-card">
+        <div class="product-detail-hd">
+          <div>
+            <div class="product-detail-title">玻尿酸 <span class="product-detail-metric">成本率</span></div>
+            <div class="product-detail-sub">较前三期均值 <strong class="td-red">+2.52%</strong> · 共 21 款产品</div>
+          </div>
+          <div class="product-detail-delta">
+            <span class="delta-label">目标值</span>
+            <span class="delta-value red">≤42.50%</span>
+          </div>
+        </div>
+        <div id="anomaly-hy" class="product-table-wrap">
+          <table class="prod-table">
+            <thead><tr><th>产品名</th><th>成本率</th><th>较目标</th></tr></thead>
+            <tbody>
+              <tr><td>1. 瑞蓝2号</td><td class="td-red">184.7%</td><td class="td-red">+142.2%</td></tr>
+              <tr><td>2. 乔雅登雅致</td><td class="td-red">170.8%</td><td class="td-red">+128.3%</td></tr>
+              <tr><td>3. 乔雅登极致</td><td class="td-red">78.5%</td><td class="td-red">+36.0%</td></tr>
+              <tr><td>4. 姣兰</td><td class="td-red">58.8%</td><td class="td-red">+16.3%</td></tr>
+              <tr><td>5. 薇旖美</td><td class="td-red">50.7%</td><td class="td-red">+8.2%</td></tr>
+              <tr class="extra-row"><td>6. 瑞瑅</td><td class="td-red">48.2%</td><td class="td-red">+5.7%</td></tr>
+              <tr class="extra-row"><td>7. 乔雅登质颜</td><td class="td-red">42.6%</td><td class="td-red">+0.1%</td></tr>
+              <tr class="extra-row"><td>8. 乔雅登丰颜XC</td><td class="td-gray">40.3%</td><td class="td-green">-2.2%</td></tr>
+              <tr class="extra-row"><td>9. 丽瑅丽多</td><td class="td-gray">39.1%</td><td class="td-green">-3.4%</td></tr>
+              <tr class="extra-row"><td>10. 乔雅登盈致</td><td class="td-gray">37.1%</td><td class="td-green">-5.4%</td></tr>
+              <tr class="extra-row"><td>11. 海魅</td><td class="td-gray">37.0%</td><td class="td-green">-5.5%</td></tr>
+              <tr class="extra-row"><td>12. 缇颜</td><td class="td-gray">37.0%</td><td class="td-green">-5.5%</td></tr>
+              <tr class="extra-row"><td>13. 乔雅登朔颜</td><td class="td-gray">33.6%</td><td class="td-green">-8.9%</td></tr>
+              <tr class="extra-row"><td>14. 润致3号</td><td class="td-gray">29.4%</td><td class="td-green">-13.1%</td></tr>
+              <tr class="extra-row"><td>15. 菲欧曼优塑</td><td class="td-gray">28.8%</td><td class="td-green">-13.7%</td></tr>
+              <tr class="extra-row"><td>16. 定采</td><td class="td-gray">23.4%</td><td class="td-green">-19.1%</td></tr>
+              <tr class="extra-row"><td>17. 莫娜丽莎</td><td class="td-gray">20.3%</td><td class="td-green">-22.2%</td></tr>
+              <tr class="extra-row"><td>18. 海魅月白</td><td class="td-gray">20.0%</td><td class="td-green">-22.5%</td></tr>
+              <tr class="extra-row"><td>19. 斐然</td><td class="td-gray">19.7%</td><td class="td-green">-22.8%</td></tr>
+              <tr class="extra-row"><td>20. 保柔缇</td><td class="td-gray">12.5%</td><td class="td-green">-30.0%</td></tr>
+              <tr class="extra-row"><td>21. 乔雅登越致</td><td class="td-gray">—</td><td class="td-gray">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="product-table-foot">
+          <button class="expand-btn" type="button" data-expand-target="anomaly-hy" data-remaining="16" aria-expanded="false" onclick="toggleProductRows('anomaly-hy', this)">展开剩余 16 条数据 ▼</button>
+        </div>
+      </div>
+
+      <div class="alert-card product-detail-card">
+        <div class="product-detail-hd">
+          <div>
+            <div class="product-detail-title">胶原产品 <span class="product-detail-metric">成本率</span></div>
+            <div class="product-detail-sub">较前三期均值 <strong class="td-red">+1.84%</strong> · 共 5 款产品</div>
+          </div>
+          <div class="product-detail-delta">
+            <span class="delta-label">目标值</span>
+            <span class="delta-value red">≤22.91%</span>
+          </div>
+        </div>
+        <div id="anomaly-jy" class="product-table-wrap">
+          <table class="prod-table">
+            <thead><tr><th>产品名</th><th>成本率</th><th>较目标</th></tr></thead>
+            <tbody>
+              <tr><td>1. 弗缦0.5ml</td><td class="td-red">33.9%</td><td class="td-red">+11.0%</td></tr>
+              <tr><td>2. 持初</td><td class="td-red">28.0%</td><td class="td-red">+5.1%</td></tr>
+              <tr><td>3. 弗缦1ml</td><td class="td-red">27.6%</td><td class="td-red">+4.7%</td></tr>
+              <tr><td>4. 肤莱美</td><td class="td-gray">21.3%</td><td class="td-green">-1.6%</td></tr>
+              <tr><td>5. 珂芮绮</td><td class="td-gray">19.6%</td><td class="td-green">-3.3%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="no-extra-note">已展示全部 5 款产品</div>
+      </div>
+
+      <div class="alert-card product-detail-card">
+        <div class="product-detail-hd">
+          <div>
+            <div class="product-detail-title">自有产品 <span class="product-detail-metric">成本率</span></div>
+            <div class="product-detail-sub">较前三期均值 <strong class="td-green">-0.76%</strong> · 共 7 款产品</div>
+          </div>
+          <div class="product-detail-delta">
+            <span class="delta-label">目标值</span>
+            <span class="delta-value green">≤8.50%</span>
+          </div>
+        </div>
+        <div id="anomaly-zy" class="product-table-wrap">
+          <table class="prod-table">
+            <thead><tr><th>产品名</th><th>成本率</th><th>较目标</th></tr></thead>
+            <tbody>
+              <tr><td>1. 海π</td><td class="td-red">11.7%</td><td class="td-red">+3.2%</td></tr>
+              <tr><td>2. 赫思妍</td><td class="td-red">10.1%</td><td class="td-red">+1.6%</td></tr>
+              <tr><td>3. 婕瑞</td><td class="td-red">9.5%</td><td class="td-red">+1.0%</td></tr>
+              <tr><td>4. 奥西施</td><td class="td-gray">8.3%</td><td class="td-green">-0.2%</td></tr>
+              <tr><td>5. 哈颜</td><td class="td-gray">6.5%</td><td class="td-green">-2.0%</td></tr>
+              <tr class="extra-row"><td>6. 新曼芙佳</td><td class="td-gray">5.5%</td><td class="td-green">-3.0%</td></tr>
+              <tr class="extra-row"><td>7. 韩颂</td><td class="td-gray">3.3%</td><td class="td-green">-5.2%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="product-table-foot">
+          <button class="expand-btn" type="button" data-expand-target="anomaly-zy" data-remaining="2" aria-expanded="false" onclick="toggleProductRows('anomaly-zy', this)">展开剩余 2 条数据 ▼</button>
+        </div>
+      </div>
+
+      <div class="alert-card product-detail-card">
+        <div class="product-detail-hd">
+          <div>
+            <div class="product-detail-title">再生产品 <span class="product-detail-metric">成本率</span></div>
+            <div class="product-detail-sub">较前三期均值 <strong class="td-green">-0.42%</strong> · 共 13 款产品</div>
+          </div>
+          <div class="product-detail-delta">
+            <span class="delta-label">目标值</span>
+            <span class="delta-value red">≤25.96%</span>
+          </div>
+        </div>
+        <div id="anomaly-zs" class="product-table-wrap">
+          <table class="prod-table">
+            <thead><tr><th>产品名</th><th>成本率</th><th>较目标</th></tr></thead>
+            <tbody>
+              <tr><td>1. 臻爱塑菲</td><td class="td-red">34.1%</td><td class="td-red">+8.1%</td></tr>
+              <tr><td>2. 伊妍仕</td><td class="td-red">34.1%</td><td class="td-red">+8.1%</td></tr>
+              <tr><td>3. 塑妍真</td><td class="td-red">32.6%</td><td class="td-red">+6.6%</td></tr>
+              <tr><td>4. 濡白天使</td><td class="td-red">31.7%</td><td class="td-red">+5.7%</td></tr>
+              <tr><td>5. 如生天使</td><td class="td-red">28.9%</td><td class="td-red">+2.9%</td></tr>
+              <tr class="extra-row"><td>6. 塑妍萃</td><td class="td-red">27.8%</td><td class="td-red">+1.8%</td></tr>
+              <tr class="extra-row"><td>7. 优法兰</td><td class="td-gray">25.7%</td><td class="td-green">-0.3%</td></tr>
+              <tr class="extra-row"><td>8. 嗗科拉</td><td class="td-gray">25.6%</td><td class="td-green">-0.4%</td></tr>
+              <tr class="extra-row"><td>9. 宝尼达</td><td class="td-gray">23.5%</td><td class="td-green">-2.5%</td></tr>
+              <tr class="extra-row"><td>10. 芮得怡</td><td class="td-gray">23.0%</td><td class="td-green">-3.0%</td></tr>
+              <tr class="extra-row"><td>11. 如生熊猫</td><td class="td-gray">21.5%</td><td class="td-green">-4.5%</td></tr>
+              <tr class="extra-row"><td>12. 普丽妍</td><td class="td-gray">21.2%</td><td class="td-green">-4.8%</td></tr>
+              <tr class="extra-row"><td>13. 斯弗妍</td><td class="td-gray">16.9%</td><td class="td-green">-9.1%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="product-table-foot">
+          <button class="expand-btn" type="button" data-expand-target="anomaly-zs" data-remaining="8" aria-expanded="false" onclick="toggleProductRows('anomaly-zs', this)">展开剩余 8 条数据 ▼</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="achievement-heading" class="section-hd">
+      <div class="section-num">3</div>
+      <span class="section-title">重点产品目标达成情况</span>
+      <span class="section-sub">按完成率由高到低排序 · 默认展示前5条</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div id="achievement-section" class="product-detail-grid">
+      <div class="target-main-card product-detail-card">
+        <div class="product-detail-hd">
+          <div>
+            <div class="product-detail-title">玻尿酸 <span class="product-detail-metric">完成率</span></div>
+            <div class="product-detail-sub">目标 1720 支 · 执行 1140 支 · 共 21 款产品</div>
+          </div>
+          <div class="product-detail-delta">
+            <span class="delta-label">综合完成率</span>
+            <span class="achievement-rate red">66.3%</span>
+          </div>
+        </div>
+        <div id="achievement-hy" class="product-table-wrap">
+          <table class="prod-table">
+            <thead><tr><th>产品名</th><th>目标</th><th>执行</th><th>完成率</th><th>成本率</th></tr></thead>
+            <tbody>
+              <tr><td>1. 乔雅登质颜</td><td>20支</td><td>29支</td><td class="td-green">145.0%</td><td class="td-red">42.6%</td></tr>
+              <tr><td>2. 瑞瑅</td><td>100支</td><td>141支</td><td class="td-green">141.0%</td><td class="td-red">48.2%</td></tr>
+              <tr><td>3. 薇旖美</td><td>10支</td><td>12支</td><td class="td-green">120.0%</td><td class="td-red">50.7%</td></tr>
+              <tr><td>4. 乔雅登丰颜XC</td><td>20支</td><td>24支</td><td class="td-green">120.0%</td><td class="td-gray">40.3%</td></tr>
+              <tr><td>5. 瑞蓝2号</td><td>80支</td><td>85支</td><td class="td-green">106.3%</td><td class="td-red">184.7%</td></tr>
+              <tr class="extra-row"><td>6. 乔雅登朔颜</td><td>50支</td><td>53支</td><td class="td-green">106.0%</td><td class="td-gray">33.6%</td></tr>
+              <tr class="extra-row"><td>7. 莫娜丽莎</td><td>200支</td><td>201支</td><td class="td-green">100.5%</td><td class="td-gray">20.3%</td></tr>
+              <tr class="extra-row"><td>8. 海魅</td><td>120支</td><td>110支</td><td class="td-gray">91.7%</td><td class="td-gray">37.0%</td></tr>
+              <tr class="extra-row"><td>9. 乔雅登雅致</td><td>100支</td><td>72支</td><td class="td-gray">72.0%</td><td class="td-red">170.8%</td></tr>
+              <tr class="extra-row"><td>10. 丽瑅丽多</td><td>100支</td><td>65支</td><td class="td-red">65.0%</td><td class="td-gray">39.1%</td></tr>
+              <tr class="extra-row"><td>11. 定采</td><td>5支</td><td>3支</td><td class="td-red">60.0%</td><td class="td-gray">23.4%</td></tr>
+              <tr class="extra-row"><td>12. 菲欧曼优塑</td><td>50支</td><td>28支</td><td class="td-red">56.0%</td><td class="td-gray">28.8%</td></tr>
+              <tr class="extra-row"><td>13. 斐然</td><td>20支</td><td>11支</td><td class="td-red">55.0%</td><td class="td-gray">19.7%</td></tr>
+              <tr class="extra-row"><td>14. 润致3号</td><td>500支</td><td>230支</td><td class="td-red">46.0%</td><td class="td-gray">29.4%</td></tr>
+              <tr class="extra-row"><td>15. 保柔缇</td><td>150支</td><td>43支</td><td class="td-red">28.7%</td><td class="td-gray">12.5%</td></tr>
+              <tr class="extra-row"><td>16. 乔雅登盈致</td><td>10支</td><td>2支</td><td class="td-red">20.0%</td><td class="td-gray">37.1%</td></tr>
+              <tr class="extra-row"><td>17. 乔雅登极致</td><td>100支</td><td>19支</td><td class="td-red">19.0%</td><td class="td-red">78.5%</td></tr>
+              <tr class="extra-row"><td>18. 海魅月白</td><td>30支</td><td>4支</td><td class="td-red">13.3%</td><td class="td-gray">20.0%</td></tr>
+              <tr class="extra-row"><td>19. 姣兰</td><td>50支</td><td>6支</td><td class="td-red">12.0%</td><td class="td-red">58.8%</td></tr>
+              <tr class="extra-row"><td>20. 乔雅登越致</td><td>5支</td><td>0支</td><td class="td-red">0.0%</td><td class="td-gray">—</td></tr>
+              <tr class="extra-row"><td>21. 缇颜</td><td>—</td><td>2支</td><td class="td-gray">—</td><td class="td-gray">37.0%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="product-table-foot">
+          <button class="expand-btn" type="button" data-expand-target="achievement-hy" data-remaining="16" aria-expanded="false" onclick="toggleProductRows('achievement-hy', this)">展开剩余 16 条数据 ▼</button>
+        </div>
+      </div>
+
+      <div class="target-main-card product-detail-card">
+        <div class="product-detail-hd">
+          <div>
+            <div class="product-detail-title">胶原产品 <span class="product-detail-metric">完成率</span></div>
+            <div class="product-detail-sub">目标 860 支 · 执行 961 支 · 共 5 款产品</div>
+          </div>
+          <div class="product-detail-delta">
+            <span class="delta-label">综合完成率</span>
+            <span class="achievement-rate green">111.7%</span>
+          </div>
+        </div>
+        <div id="achievement-jy" class="product-table-wrap">
+          <table class="prod-table">
+            <thead><tr><th>产品名</th><th>目标</th><th>执行</th><th>完成率</th><th>成本率</th></tr></thead>
+            <tbody>
+              <tr><td>1. 肤莱美</td><td>200支</td><td>320支</td><td class="td-green">160.0%</td><td class="td-gray">21.3%</td></tr>
+              <tr><td>2. 持初</td><td>30支</td><td>32支</td><td class="td-green">106.7%</td><td class="td-red">28.0%</td></tr>
+              <tr><td>3. 弗缦1ml</td><td>500支</td><td>521支</td><td class="td-green">104.2%</td><td class="td-red">27.6%</td></tr>
+              <tr><td>4. 弗缦0.5ml</td><td>100支</td><td>87支</td><td class="td-gray">87.0%</td><td class="td-red">33.9%</td></tr>
+              <tr><td>5. 珂芮绮</td><td>30支</td><td>1支</td><td class="td-red">3.3%</td><td class="td-gray">19.6%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="no-extra-note">已展示全部 5 款产品</div>
+      </div>
+
+      <div class="target-main-card product-detail-card">
+        <div class="product-detail-hd">
+          <div>
+            <div class="product-detail-title">自有产品 <span class="product-detail-metric">完成率</span></div>
+            <div class="product-detail-sub">目标 2430 支 · 执行 1786 支 · 共 7 款产品</div>
+          </div>
+          <div class="product-detail-delta">
+            <span class="delta-label">综合完成率</span>
+            <span class="achievement-rate red">73.5%</span>
+          </div>
+        </div>
+        <div id="achievement-zy" class="product-table-wrap">
+          <table class="prod-table">
+            <thead><tr><th>产品名</th><th>目标</th><th>执行</th><th>完成率</th><th>成本率</th></tr></thead>
+            <tbody>
+              <tr><td>1. 哈颜</td><td>750支</td><td>695支</td><td class="td-gray">92.7%</td><td class="td-gray">6.5%</td></tr>
+              <tr><td>2. 婕瑞</td><td>700支</td><td>540支</td><td class="td-gray">77.1%</td><td class="td-red">9.5%</td></tr>
+              <tr><td>3. 海π</td><td>200支</td><td>133支</td><td class="td-red">66.5%</td><td class="td-red">11.7%</td></tr>
+              <tr><td>4. 奥西施</td><td>200支</td><td>131支</td><td class="td-red">65.5%</td><td class="td-gray">8.3%</td></tr>
+              <tr><td>5. 韩颂</td><td>500支</td><td>275支</td><td class="td-red">55.0%</td><td class="td-gray">3.3%</td></tr>
+              <tr class="extra-row"><td>6. 新曼芙佳</td><td>50支</td><td>9支</td><td class="td-red">18.0%</td><td class="td-gray">5.5%</td></tr>
+              <tr class="extra-row"><td>7. 赫思妍</td><td>30支</td><td>3支</td><td class="td-red">10.0%</td><td class="td-red">10.1%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="product-table-foot">
+          <button class="expand-btn" type="button" data-expand-target="achievement-zy" data-remaining="2" aria-expanded="false" onclick="toggleProductRows('achievement-zy', this)">展开剩余 2 条数据 ▼</button>
+        </div>
+      </div>
+
+      <div class="target-main-card product-detail-card">
+        <div class="product-detail-hd">
+          <div>
+            <div class="product-detail-title">再生产品 <span class="product-detail-metric">完成率</span></div>
+            <div class="product-detail-sub">目标 1280 支 · 执行 1054 支 · 共 13 款产品</div>
+          </div>
+          <div class="product-detail-delta">
+            <span class="delta-label">综合完成率</span>
+            <span class="achievement-rate red">82.3%</span>
+          </div>
+        </div>
+        <div id="achievement-zs" class="product-table-wrap">
+          <table class="prod-table">
+            <thead><tr><th>产品名</th><th>目标</th><th>执行</th><th>完成率</th><th>成本率</th></tr></thead>
+            <tbody>
+              <tr><td>1. 芮得怡</td><td>20支</td><td>82支</td><td class="td-green">410.0%</td><td class="td-gray">23.0%</td></tr>
+              <tr><td>2. 如生熊猫</td><td>30支</td><td>44支</td><td class="td-green">146.7%</td><td class="td-gray">21.5%</td></tr>
+              <tr><td>3. 宝尼达</td><td>200支</td><td>223支</td><td class="td-green">111.5%</td><td class="td-gray">23.5%</td></tr>
+              <tr><td>4. 如生天使</td><td>180支</td><td>193支</td><td class="td-green">107.2%</td><td class="td-red">28.9%</td></tr>
+              <tr><td>5. 伊妍仕</td><td>50支</td><td>51支</td><td class="td-green">102.0%</td><td class="td-red">34.1%</td></tr>
+              <tr class="extra-row"><td>6. 塑妍真</td><td>10支</td><td>10支</td><td class="td-green">100.0%</td><td class="td-red">32.6%</td></tr>
+              <tr class="extra-row"><td>7. 濡白天使</td><td>280支</td><td>221支</td><td class="td-gray">78.9%</td><td class="td-red">31.7%</td></tr>
+              <tr class="extra-row"><td>8. 塑妍萃</td><td>150支</td><td>89支</td><td class="td-red">59.3%</td><td class="td-red">27.8%</td></tr>
+              <tr class="extra-row"><td>9. 嗗科拉</td><td>120支</td><td>69支</td><td class="td-red">57.5%</td><td class="td-gray">25.6%</td></tr>
+              <tr class="extra-row"><td>10. 优法兰</td><td>50支</td><td>22支</td><td class="td-red">44.0%</td><td class="td-gray">25.7%</td></tr>
+              <tr class="extra-row"><td>11. 普丽妍</td><td>20支</td><td>7支</td><td class="td-red">35.0%</td><td class="td-gray">21.2%</td></tr>
+              <tr class="extra-row"><td>12. 臻爱塑菲</td><td>150支</td><td>42支</td><td class="td-red">28.0%</td><td class="td-red">34.1%</td></tr>
+              <tr class="extra-row"><td>13. 斯弗妍</td><td>20支</td><td>1支</td><td class="td-red">5.0%</td><td class="td-gray">16.9%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="product-table-foot">
+          <button class="expand-btn" type="button" data-expand-target="achievement-zs" data-remaining="8" aria-expanded="false" onclick="toggleProductRows('achievement-zs', this)">展开剩余 8 条数据 ▼</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="ai-float" type="button" onclick="openProductAI()">✦ AI 助手</button>
+
+
+</body>
+</html>

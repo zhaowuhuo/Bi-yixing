@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微整科 — 耗材成本管控</title>
+
+<template id="__bundler_thumbnail" data-bg-color="#F2F3F5">
+  <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+    <!-- sidebar -->
+    <rect x="0" y="0" width="28" height="80" fill="#1A1A1A" rx="0"/>
+    <rect x="4" y="6" width="20" height="10" rx="3" fill="rgba(255,255,255,0.15)"/>
+    <rect x="4" y="20" width="20" height="6" rx="2" fill="rgba(255,255,255,0.1)"/>
+    <rect x="4" y="28" width="20" height="6" rx="2" fill="rgba(255,255,255,0.1)"/>
+    <rect x="4" y="36" width="20" height="6" rx="2" fill="rgba(255,255,255,0.07)"/>
+    <!-- topbar -->
+    <rect x="28" y="0" width="92" height="12" fill="#fff"/>
+    <!-- KPI cards row -->
+    <rect x="30" y="15" width="16" height="18" rx="2" fill="#fff" stroke="#E5E5E5" stroke-width="0.5"/>
+    <rect x="32" y="24" width="8" height="3" rx="1" fill="#E53E3E"/>
+    <rect x="48" y="15" width="16" height="18" rx="2" fill="#fff" stroke="#E5E5E5" stroke-width="0.5"/>
+    <rect x="50" y="24" width="8" height="3" rx="1" fill="#E53E3E"/>
+    <rect x="66" y="15" width="16" height="18" rx="2" fill="#fff" stroke="#E5E5E5" stroke-width="0.5"/>
+    <rect x="68" y="24" width="8" height="3" rx="1" fill="#E53E3E"/>
+    <rect x="84" y="15" width="16" height="18" rx="2" fill="#fff" stroke="#E5E5E5" stroke-width="0.5"/>
+    <rect x="86" y="24" width="8" height="3" rx="1" fill="#E53E3E"/>
+    <rect x="102" y="15" width="16" height="18" rx="2" fill="#fff" stroke="#E5E5E5" stroke-width="0.5"/>
+    <rect x="104" y="24" width="8" height="3" rx="1" fill="#E53E3E"/>
+    <!-- alert cards row -->
+    <rect x="30" y="38" width="27" height="36" rx="2" fill="#fff" stroke="#E5E5E5" stroke-width="0.5"/>
+    <rect x="32" y="41" width="14" height="2" rx="1" fill="#1A1A1A"/>
+    <rect x="32" y="45" width="23" height="2" rx="1" fill="#F0F0F0"/>
+    <rect x="32" y="49" width="23" height="2" rx="1" fill="#F0F0F0"/>
+    <rect x="32" y="53" width="23" height="2" rx="1" fill="#F0F0F0"/>
+    <rect x="32" y="57" width="23" height="2" rx="1" fill="#F0F0F0"/>
+    <rect x="59" y="38" width="27" height="36" rx="2" fill="#fff" stroke="#E5E5E5" stroke-width="0.5"/>
+    <rect x="61" y="41" width="14" height="2" rx="1" fill="#1A1A1A"/>
+    <rect x="61" y="46" width="10" height="8" rx="1" fill="#FEF2F2"/>
+    <rect x="61" y="56" width="23" height="2" rx="1" fill="#F0F0F0"/>
+    <rect x="61" y="60" width="23" height="2" rx="1" fill="#F0F0F0"/>
+    <rect x="88" y="38" width="30" height="36" rx="2" fill="#fff" stroke="#E5E5E5" stroke-width="0.5"/>
+    <rect x="90" y="41" width="14" height="2" rx="1" fill="#1A1A1A"/>
+    <rect x="90" y="46" width="10" height="8" rx="1" fill="#FEF2F2"/>
+    <rect x="90" y="56" width="26" height="2" rx="1" fill="#F0F0F0"/>
+    <rect x="90" y="60" width="26" height="2" rx="1" fill="#F0F0F0"/>
+  </svg>
+</template>
+  <script type="module" crossorigin src="/assets/weizhengke-DYAcXUqe.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="stylesheet" crossorigin href="/assets/weizhengke-Dy8bwEct.css">
+</head>
+<body>
+
+<!-- ══ 左侧导航 ══ -->
+<aside class="sidebar">
+  <div class="sidebar-inner">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-top">
+        <div class="sidebar-brand-icon">BI</div>
+        <div class="sidebar-brand-name">耗材成本看板</div>
+      </div>
+      <div class="sidebar-brand-sub">总览 + 科室三级分析结构</div>
+    </div>
+
+    <div class="nav-label">Overview</div>
+    <button class="nav-home" type="button" onclick="window.location='index.html'">
+      <span class="nav-home-icon"></span>
+      <span>首页总览</span>
+    </button>
+
+    <div class="nav-label">Departments</div>
+
+    <!-- 微整科：展开且高亮 -->
+    <div class="nav-group" style="border-color:#1A1A1A;">
+      <div class="nav-group-hd" style="background:#1A1A1A;color:#fff;border-radius:14px 14px 0 0;cursor:default;">
+        <span class="nav-group-main">
+          <span class="nav-group-dot" style="background:rgba(255,255,255,0.5);"></span>
+          <span>微整科</span>
+        </span>
+        <span class="nav-toggle" style="background:rgba(255,255,255,0.12);color:#fff;font-size:11px;">当前</span>
+      </div>
+      <div class="nav-group-body">
+        <button class="nav-link" type="button" onclick="window.location='微整科-产品耗占比分析.html'">产品耗占分析</button>
+        <button class="nav-link" type="button" onclick="window.location='微整科-医生耗占分析.html'">医生耗占分析</button>
+        <button class="nav-link" type="button" onclick="window.location='微整科-咨询耗占分析.html'">咨询耗占分析</button>
+      </div>
+    </div>
+
+    <div class="nav-group collapsed">
+      <button class="nav-group-hd" type="button" onclick="window.location='pifuke.html'">
+        <span class="nav-group-main">
+          <span class="nav-group-dot" style="background:#111827;"></span>
+          <span>皮肤科</span>
+        </span>
+        <span class="nav-toggle" style="font-size:11px;color:#999;">进入</span>
+      </button>
+      <div class="nav-group-body">
+        <button class="nav-link" type="button">产品耗占分析</button>
+        <button class="nav-link" type="button">医生耗占分析</button>
+        <button class="nav-link" type="button">咨询耗占分析</button>
+      </div>
+    </div>
+
+    <div class="nav-group collapsed">
+      <button class="nav-group-hd" type="button" onclick="toggleNavGroup(this)">
+        <span class="nav-group-main">
+          <span class="nav-group-dot" style="background:#EA580C;"></span>
+          <span>整形科</span>
+        </span>
+        <span class="nav-toggle">+</span>
+      </button>
+      <div class="nav-group-body">
+        <button class="nav-link" type="button">科室总览</button>
+        <button class="nav-link" type="button">产品耗占分析</button>
+        <button class="nav-link" type="button">医生耗占分析</button>
+        <button class="nav-link" type="button">咨询耗占分析</button>
+      </div>
+    </div>
+
+    <div class="nav-tip">
+      当前：微整科 · 科室总览<br>
+      数据更新：2026-04-22 08:05
+    </div>
+  </div>
+</aside>
+
+<div class="content-shell">
+
+  <!-- ══ 顶部导航 ══ -->
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-icon">📊</div>
+      <div>
+        <div class="brand-name">耗材成本经营总览</div>
+        <div class="brand-meta">微整科 · 科室总览&nbsp;·&nbsp;数据更新：2026-04-22 08:05&nbsp;·&nbsp;本地数据库自动同步</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="filter-pill">
+        <span class="filter-label">月份</span>
+        <select class="filter-select">
+          <option>2026-04</option>
+          <option>2026-03</option>
+          <option>2026-02</option>
+        </select>
+      </div>
+      <button class="btn btn-ghost">⬇ 导出报告</button>
+      <button class="btn btn-dark">✦ AI 助手</button>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- 面包屑 -->
+    <div class="breadcrumb">
+      <a href="#">首页总览</a>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-current">微整科</span>
+    </div>
+
+    <!-- ══ 模块一：耗占比对比 ══ -->
+    <div class="section-hd">
+      <div class="section-num">1</div>
+      <span class="section-title">耗占比对比</span>
+      <span class="section-sub">纯耗材，不含麻醉</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="grid-5">
+
+      <!-- 卡片1：微整科总耗占比 -->
+      <div class="kpi-card primary">
+        <div class="kc-title">微整科总耗占比</div>
+        <div class="kc-main danger">24.55%</div>
+        <div class="kc-divider"></div>
+        <div class="kc-row">
+          <span class="kc-row-label">较前三期均值</span>
+          <span class="kc-val-red">+1.45%</span>
+          <span class="badge badge-red">▲ 偏高</span>
+        </div>
+        <div class="kc-target">目标值：<span>≤23.10%</span></div>
+      </div>
+
+      <!-- 卡片2：微整填充耗占比 -->
+      <div class="kpi-card">
+        <div class="kc-title">微整填充耗占比</div>
+        <div class="kc-main">23.01%</div>
+        <div class="kc-divider"></div>
+        <div class="kc-row">
+          <span class="kc-row-label">较前三期均值</span>
+          <span class="kc-val-green">−0.96%</span>
+          <span class="badge badge-green">▼ 优秀</span>
+        </div>
+        <div class="kc-target">目标值：<span>≤23.97%</span></div>
+      </div>
+
+      <!-- 卡片3：肌肉塑形耗占比 -->
+      <div class="kpi-card">
+        <div class="kc-title">肌肉塑形耗占比</div>
+        <div class="kc-main danger">66.83%</div>
+        <div class="kc-divider"></div>
+        <div class="kc-row">
+          <span class="kc-row-label">较前三期均值</span>
+          <span class="kc-val-red">+2.38%</span>
+          <span class="badge badge-red">▲ 偏高</span>
+        </div>
+        <div class="kc-target">目标值：<span>≤68.71%</span></div>
+      </div>
+
+      <!-- 卡片4：微整除皱耗占比 -->
+      <div class="kpi-card">
+        <div class="kc-title">微整除皱耗占比</div>
+        <div class="kc-main danger">60.15%</div>
+        <div class="kc-divider"></div>
+        <div class="kc-row">
+          <span class="kc-row-label">较前三期均值</span>
+          <span class="kc-val-red">+1.89%</span>
+          <span class="badge badge-red">▲ 偏高</span>
+        </div>
+        <div class="kc-target">目标值：<span>≤62.53%</span></div>
+      </div>
+
+      <!-- 卡片5：微整抗衰耗占比 -->
+      <div class="kpi-card">
+        <div class="kc-title">微整抗衰耗占比</div>
+        <div class="kc-main danger">48.76%</div>
+        <div class="kc-divider"></div>
+        <div class="kc-row">
+          <span class="kc-row-label">较前三期均值</span>
+          <span class="kc-val-red">+1.64%</span>
+          <span class="badge badge-red">▲ 偏高</span>
+        </div>
+        <div class="kc-target">目标值：<span>≤50.40%</span></div>
+      </div>
+
+    </div>
+
+    <!-- ══ 模块二：异常预警 ══ -->
+    <div class="section-hd">
+      <div class="section-num red">2</div>
+      <span class="section-title">异常预警</span>
+      <span class="section-sub">重点产品 / 医生 / 咨询 维度</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="grid-3">
+
+      <!-- 卡片1：重点产品 -->
+      <div class="alert-card">
+        <div class="alert-hd">
+          <div class="alert-dept">重点产品</div>
+          <div class="alert-cnt-badge">共 10 项异常</div>
+        </div>
+        <div class="prod-list">
+
+          <!-- 汇总面板 -->
+          <div class="count-panel">
+            <div class="cp-top">
+              <div>
+                <div class="cp-big-num">10</div>
+                <div class="cp-big-unit">款产品出现异常</div>
+              </div>
+              <div class="cp-severity">
+                <div class="cp-severity-label">按严重程度</div>
+                <div class="cp-severity-row">
+                  <div class="cp-sev-item">
+                    <div class="cp-sev-num red">6</div>
+                    <div class="cp-sev-label">严重 🔴</div>
+                  </div>
+                  <div class="cp-sev-item">
+                    <div class="cp-sev-num gray">4</div>
+                    <div class="cp-sev-label">偏高 ⚠️</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cp-breakdown">
+              <div class="cp-bd-item">
+                <div class="cp-bd-num">4</div>
+                <div class="cp-bd-label">成本率超标</div>
+              </div>
+              <div class="cp-bd-item">
+                <div class="cp-bd-num">4</div>
+                <div class="cp-bd-label">单体偏差过大</div>
+              </div>
+              <div class="cp-bd-item">
+                <div class="cp-bd-num gray">2</div>
+                <div class="cp-bd-label">双维预警</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="prod-item">
+            <div class="prod-name">玻尿酸</div>
+            <div class="prod-pct">40.59%</div>
+            <div class="prod-delta-wrap">
+              <span class="prod-delta-label">较前三期均值</span>
+              <span class="prod-delta-val">+2.52%</span>
+            </div>
+            <div class="prod-cnt-badge">4</div>
+          </div>
+
+          <div class="prod-item">
+            <div class="prod-name">胶原产品</div>
+            <div class="prod-pct">24.58%</div>
+            <div class="prod-delta-wrap">
+              <span class="prod-delta-label">较前三期均值</span>
+              <span class="prod-delta-val">+1.67%</span>
+            </div>
+            <div class="prod-cnt-badge">3</div>
+          </div>
+
+          <div class="prod-item">
+            <div class="prod-name">自有产品</div>
+            <div class="prod-pct">7.27%</div>
+            <div class="prod-delta-wrap">
+              <span class="prod-delta-label">较前三期均值</span>
+              <span class="prod-delta-val">+1.03%</span>
+            </div>
+            <div class="prod-cnt-badge">2</div>
+          </div>
+
+          <div class="prod-item">
+            <div class="prod-name">再生产品</div>
+            <div class="prod-pct">26.99%</div>
+            <div class="prod-delta-wrap">
+              <span class="prod-delta-label">较前三期均值</span>
+              <span class="prod-delta-val">+1.03%</span>
+            </div>
+            <div class="prod-cnt-badge">1</div>
+          </div>
+
+        </div>
+        <div style="margin-top: 10px;">
+          <button class="detail-btn">查看全部 10 项异常产品 →</button>
+        </div>
+      </div>
+
+      <!-- 卡片2：医生 -->
+      <div class="alert-card">
+        <div class="alert-hd">
+          <div class="alert-dept">医生</div>
+          <div class="alert-cnt-badge">共 12 项异常</div>
+        </div>
+        <div class="count-panel">
+          <div class="cp-top">
+            <div>
+              <div class="cp-big-num">8</div>
+              <div class="cp-big-unit">位医生出现异常</div>
+            </div>
+            <div class="cp-severity">
+              <div class="cp-severity-label">按严重程度</div>
+              <div class="cp-severity-row">
+                <div class="cp-sev-item">
+                  <div class="cp-sev-num red">5</div>
+                  <div class="cp-sev-label">严重 🔴</div>
+                </div>
+                <div class="cp-sev-item">
+                  <div class="cp-sev-num gray">7</div>
+                  <div class="cp-sev-label">偏高 ⚠️</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cp-breakdown">
+            <div class="cp-bd-item">
+              <div class="cp-bd-num">4</div>
+              <div class="cp-bd-label">成本率超标</div>
+            </div>
+            <div class="cp-bd-item">
+              <div class="cp-bd-num">5</div>
+              <div class="cp-bd-label">单体偏差过大</div>
+            </div>
+            <div class="cp-bd-item">
+              <div class="cp-bd-num gray">3</div>
+              <div class="cp-bd-label">双维预警</div>
+            </div>
+          </div>
+        </div>
+        <div class="doctor-list">
+          <div class="doctor-item">
+            <div class="di-avatar">张</div>
+            <div class="di-info">
+              <div class="di-name">张医生</div>
+              <div class="di-sub">玻尿酸·乔雅登 · 单体偏差 −9,800元</div>
+            </div>
+            <div class="di-right">
+              <div class="di-pct">43.2%</div>
+              <div class="di-tag">成本率 🔴</div>
+            </div>
+          </div>
+          <div class="doctor-item">
+            <div class="di-avatar">王</div>
+            <div class="di-info">
+              <div class="di-name">王医生</div>
+              <div class="di-sub">胶原·双美 · 单体偏差 −6,200元</div>
+            </div>
+            <div class="di-right">
+              <div class="di-pct">38.7%</div>
+              <div class="di-tag">成本率 🔴</div>
+            </div>
+          </div>
+          <div class="doctor-item warn">
+            <div class="di-avatar" style="color:#F59E0B;">李</div>
+            <div class="di-info">
+              <div class="di-name">李医生</div>
+              <div class="di-sub">微整除皱·保妥适 · 成本率偏高</div>
+            </div>
+            <div class="di-right">
+              <div class="di-pct warn">61.4%</div>
+              <div class="di-tag">成本率 ⚠️</div>
+            </div>
+          </div>
+        </div>
+        <button class="detail-btn">查看全部 8 位异常医生 →</button>
+      </div>
+
+      <!-- 卡片3：咨询 -->
+      <div class="alert-card">
+        <div class="alert-hd">
+          <div class="alert-dept">咨询</div>
+          <div class="alert-cnt-badge">共 17 项异常</div>
+        </div>
+        <div class="count-panel">
+          <div class="cp-top">
+            <div>
+              <div class="cp-big-num">11</div>
+              <div class="cp-big-unit">位咨询师出现异常</div>
+            </div>
+            <div class="cp-severity">
+              <div class="cp-severity-label">按严重程度</div>
+              <div class="cp-severity-row">
+                <div class="cp-sev-item">
+                  <div class="cp-sev-num red">6</div>
+                  <div class="cp-sev-label">严重 🔴</div>
+                </div>
+                <div class="cp-sev-item">
+                  <div class="cp-sev-num gray">11</div>
+                  <div class="cp-sev-label">偏低 ⚠️</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cp-breakdown">
+            <div class="cp-bd-item">
+              <div class="cp-bd-num">5</div>
+              <div class="cp-bd-label">客单严重不足</div>
+            </div>
+            <div class="cp-bd-item">
+              <div class="cp-bd-num">7</div>
+              <div class="cp-bd-label">推荐结构异常</div>
+            </div>
+            <div class="cp-bd-item">
+              <div class="cp-bd-num gray">5</div>
+              <div class="cp-bd-label">完成度偏低</div>
+            </div>
+          </div>
+        </div>
+        <div class="doctor-list">
+
+          <!-- 新客1组 -->
+          <div class="group-row" onclick="toggleGroup('grp-xk1', this)">
+            <div class="group-left">
+              <span class="group-tag red">新客1组</span>
+              <span class="group-info">5位咨询师 · <span class="group-err">4项异常</span></span>
+            </div>
+            <div class="group-right">
+              <span class="group-sev"><span class="sev-dot red"></span>严重 2</span>
+              <span class="group-sev"><span class="sev-dot warn"></span>偏低 2</span>
+              <span class="group-arrow">▶</span>
+            </div>
+          </div>
+          <div id="grp-xk1" class="group-body">
+            <div class="doctor-item">
+              <div class="di-avatar">陈</div>
+              <div class="di-info">
+                <div class="di-name">陈咨询</div>
+                <div class="di-sub">玻尿酸推荐占比严重偏低 · 客单 −3,200元</div>
+              </div>
+              <div class="di-right">
+                <div class="di-pct">18.3%</div>
+                <div class="di-tag">推荐率 🔴</div>
+              </div>
+            </div>
+            <div class="doctor-item">
+              <div class="di-avatar">林</div>
+              <div class="di-info">
+                <div class="di-name">林咨询</div>
+                <div class="di-sub">胶原产品推荐完成度不足 · 客单 −2,100元</div>
+              </div>
+              <div class="di-right">
+                <div class="di-pct">26.5%</div>
+                <div class="di-tag">推荐率 🔴</div>
+              </div>
+            </div>
+            <div class="doctor-item warn">
+              <div class="di-avatar" style="color:#F59E0B;">孙</div>
+              <div class="di-info">
+                <div class="di-name">孙咨询</div>
+                <div class="di-sub">自有产品客单偏低 · 结构推荐待优化</div>
+              </div>
+              <div class="di-right">
+                <div class="di-pct warn">58.4%</div>
+                <div class="di-tag">完成率 ⚠️</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 新客2组 -->
+          <div class="group-row" onclick="toggleGroup('grp-xk2', this)">
+            <div class="group-left">
+              <span class="group-tag red">新客2组</span>
+              <span class="group-info">4位咨询师 · <span class="group-err">3项异常</span></span>
+            </div>
+            <div class="group-right">
+              <span class="group-sev"><span class="sev-dot red"></span>严重 2</span>
+              <span class="group-sev"><span class="sev-dot warn"></span>偏低 1</span>
+              <span class="group-arrow">▶</span>
+            </div>
+          </div>
+          <div id="grp-xk2" class="group-body">
+            <div class="doctor-item">
+              <div class="di-avatar">刘</div>
+              <div class="di-info">
+                <div class="di-name">刘咨询</div>
+                <div class="di-sub">胶原产品完成度严重不足 · 仅完成34%</div>
+              </div>
+              <div class="di-right">
+                <div class="di-pct">34.0%</div>
+                <div class="di-tag">完成率 🔴</div>
+              </div>
+            </div>
+            <div class="doctor-item">
+              <div class="di-avatar">吴</div>
+              <div class="di-info">
+                <div class="di-name">吴咨询</div>
+                <div class="di-sub">再生产品客单严重不足 · 仅完成41%</div>
+              </div>
+              <div class="di-right">
+                <div class="di-pct">41.2%</div>
+                <div class="di-tag">完成率 🔴</div>
+              </div>
+            </div>
+            <div class="doctor-item warn">
+              <div class="di-avatar" style="color:#F59E0B;">周</div>
+              <div class="di-info">
+                <div class="di-name">周咨询</div>
+                <div class="di-sub">玻尿酸推荐结构待优化 · 客单偏低</div>
+              </div>
+              <div class="di-right">
+                <div class="di-pct warn">63.7%</div>
+                <div class="di-tag">推荐率 ⚠️</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 老客组 -->
+          <div class="group-row" onclick="toggleGroup('grp-lk', this)">
+            <div class="group-left">
+              <span class="group-tag" style="background:#F5F5F5;color:#888;border-color:#E0E0E0;">老客组</span>
+              <span class="group-info">6位咨询师 · <span class="group-err">4项异常</span></span>
+            </div>
+            <div class="group-right">
+              <span class="group-sev"><span class="sev-dot red"></span>严重 2</span>
+              <span class="group-sev"><span class="sev-dot warn"></span>偏低 2</span>
+              <span class="group-arrow">▶</span>
+            </div>
+          </div>
+          <div id="grp-lk" class="group-body">
+            <div class="doctor-item warn">
+              <div class="di-avatar" style="color:#F59E0B;">赵</div>
+              <div class="di-info">
+                <div class="di-name">赵咨询</div>
+                <div class="di-sub">再生产品客单偏低 · 结构推荐待优化</div>
+              </div>
+              <div class="di-right">
+                <div class="di-pct warn">62.1%</div>
+                <div class="di-tag">完成率 ⚠️</div>
+              </div>
+            </div>
+            <div class="doctor-item">
+              <div class="di-avatar">郑</div>
+              <div class="di-info">
+                <div class="di-name">郑咨询</div>
+                <div class="di-sub">胶原·童颜针 推荐客单严重不足</div>
+              </div>
+              <div class="di-right">
+                <div class="di-pct">29.8%</div>
+                <div class="di-tag">推荐率 🔴</div>
+              </div>
+            </div>
+            <div class="doctor-item warn">
+              <div class="di-avatar" style="color:#F59E0B;">何</div>
+              <div class="di-info">
+                <div class="di-name">何咨询</div>
+                <div class="di-sub">微整填充完成度偏低 · 仅完成67%</div>
+              </div>
+              <div class="di-right">
+                <div class="di-pct warn">67.0%</div>
+                <div class="di-tag">完成率 ⚠️</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <button class="detail-btn">查看全部 11 位异常咨询师 →</button>
+      </div>
+
+    </div>
+
+    <!-- ══ 模块三：目标达成情况 ══ -->
+    <div class="section-hd">
+      <div class="section-num">3</div>
+      <span class="section-title">目标达成情况</span>
+      <span class="section-sub">截至 2026-04-22 · 按完成度升序排列</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="target-main-card">
+      <div class="target-main-hd">
+        <div>
+          <div class="target-main-title">重点产品</div>
+          <div class="target-main-sub">微整科 · 支数阶段完成情况</div>
+        </div>
+        <div class="target-main-stat">49 <span>款产品参与考核</span></div>
+      </div>
+
+      <!-- 再生产品 -->
+      <div class="cat-row" onclick="toggleCat('cat-zs', this)">
+        <div class="cat-left">
+          <span class="cat-name">再生产品</span>
+          <span class="cat-count">12款 · <em>3项偏低</em></span>
+        </div>
+        <div class="cat-right">
+          <div class="cat-bar-wrap">
+            <div class="cat-bar-track"><div class="cat-bar-fill ok" style="width:83%;"></div></div>
+          </div>
+          <span class="cat-pct green">83.3%</span>
+          <span class="cat-arrow">▶</span>
+        </div>
+      </div>
+      <div id="cat-zs" class="cat-body">
+        <table class="prod-table">
+          <thead><tr><th>产品名</th><th>目标</th><th>实际</th><th>完成度</th><th>成本率</th></tr></thead>
+          <tbody>
+            <tr><td>童颜针·艾维岚</td><td>20支</td><td>8支</td><td class="td-red">40.0%</td><td class="td-red">48.2%</td></tr>
+            <tr><td>少女针·精灵</td><td>15支</td><td>6支</td><td class="td-red">40.0%</td><td class="td-red">44.7%</td></tr>
+            <tr><td>童颜针·标准版</td><td>18支</td><td>12支</td><td class="td-gray">66.7%</td><td>32.1%</td></tr>
+            <tr><td>少女针·升级版</td><td>12支</td><td>10支</td><td class="td-gray">83.3%</td><td>29.8%</td></tr>
+            <tr><td>爱贝芙·经典</td><td>10支</td><td>13支</td><td class="td-green">130.0%</td><td>26.8%</td></tr>
+            <tr><td>爱贝芙·精华版</td><td>8支</td><td>11支</td><td class="td-green">137.5%</td><td>24.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 玻尿酸 -->
+      <div class="cat-row" onclick="toggleCat('cat-bns', this)">
+        <div class="cat-left">
+          <span class="cat-name">玻尿酸</span>
+          <span class="cat-count">18款 · <em>5项偏低</em></span>
+        </div>
+        <div class="cat-right">
+          <div class="cat-bar-wrap">
+            <div class="cat-bar-track"><div class="cat-bar-fill warn" style="width:62%;"></div></div>
+          </div>
+          <span class="cat-pct red">62.1%</span>
+          <span class="cat-arrow">▶</span>
+        </div>
+      </div>
+      <div id="cat-bns" class="cat-body">
+        <table class="prod-table">
+          <thead><tr><th>产品名</th><th>目标</th><th>实际</th><th>完成度</th><th>成本率</th></tr></thead>
+          <tbody>
+            <tr><td>乔雅登·极致</td><td>30支</td><td>5支</td><td class="td-red">16.7%</td><td class="td-red">47.1%</td></tr>
+            <tr><td>逸美·经典</td><td>25支</td><td>8支</td><td class="td-red">32.0%</td><td class="td-red">43.8%</td></tr>
+            <tr><td>润百颜·水光</td><td>20支</td><td>9支</td><td class="td-red">45.0%</td><td>38.5%</td></tr>
+            <tr><td>海薇·补水版</td><td>18支</td><td>14支</td><td class="td-gray">77.8%</td><td>36.2%</td></tr>
+            <tr><td>乔雅登·丰颜</td><td>15支</td><td>14支</td><td class="td-gray">93.3%</td><td>35.6%</td></tr>
+            <tr><td>润百颜·精华</td><td>12支</td><td>16支</td><td class="td-green">133.3%</td><td>31.4%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 胶原产品 -->
+      <div class="cat-row" onclick="toggleCat('cat-jy', this)">
+        <div class="cat-left">
+          <span class="cat-name">胶原产品</span>
+          <span class="cat-count">11款 · <em>4项偏低</em></span>
+        </div>
+        <div class="cat-right">
+          <div class="cat-bar-wrap">
+            <div class="cat-bar-track"><div class="cat-bar-fill warn" style="width:55%;"></div></div>
+          </div>
+          <span class="cat-pct red">55.2%</span>
+          <span class="cat-arrow">▶</span>
+        </div>
+      </div>
+      <div id="cat-jy" class="cat-body">
+        <table class="prod-table">
+          <thead><tr><th>产品名</th><th>目标</th><th>实际</th><th>完成度</th><th>成本率</th></tr></thead>
+          <tbody>
+            <tr><td>双美·胶原蛋白</td><td>25支</td><td>6支</td><td class="td-red">24.0%</td><td class="td-red">49.3%</td></tr>
+            <tr><td>可丽金·修护版</td><td>18支</td><td>8支</td><td class="td-red">44.4%</td><td class="td-red">41.6%</td></tr>
+            <tr><td>艾维岚·胶原</td><td>12支</td><td>7支</td><td class="td-red">58.3%</td><td>35.8%</td></tr>
+            <tr><td>双美·升级版</td><td>10支</td><td>9支</td><td class="td-gray">90.0%</td><td>28.4%</td></tr>
+            <tr><td>可丽金·精华</td><td>8支</td><td>11支</td><td class="td-green">137.5%</td><td>24.1%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 自有产品 -->
+      <div class="cat-row" onclick="toggleCat('cat-zy', this)" style="border-bottom:none;">
+        <div class="cat-left">
+          <span class="cat-name">自有产品</span>
+          <span class="cat-count">8款 · <em>2项偏低</em></span>
+        </div>
+        <div class="cat-right">
+          <div class="cat-bar-wrap">
+            <div class="cat-bar-track"><div class="cat-bar-fill ok" style="width:112%;"></div></div>
+          </div>
+          <span class="cat-pct green">112.5%</span>
+          <span class="cat-arrow">▶</span>
+        </div>
+      </div>
+      <div id="cat-zy" class="cat-body" style="border-bottom:none;">
+        <table class="prod-table">
+          <thead><tr><th>产品名</th><th>目标</th><th>实际</th><th>完成度</th><th>成本率</th></tr></thead>
+          <tbody>
+            <tr><td>自研填充·A型</td><td>8支</td><td>3支</td><td class="td-red">37.5%</td><td>8.1%</td></tr>
+            <tr><td>自研填充·B型</td><td>6支</td><td>4支</td><td class="td-red">66.7%</td><td>7.4%</td></tr>
+            <tr><td>自研修护·基础版</td><td>10支</td><td>11支</td><td class="td-green">110.0%</td><td>6.8%</td></tr>
+            <tr><td>自研抗衰·精华</td><td>8支</td><td>10支</td><td class="td-green">125.0%</td><td>5.9%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /content-shell -->
+
+<button class="ai-float">✦ AI 助手</button>
+
+
+</body>
+</html>
