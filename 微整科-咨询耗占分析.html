@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>微整科 — 咨询耗占分析</title>
+<link rel="icon" href="data:,">
+  <script type="module" crossorigin src="/Bi-yixing/assets/consultantAnalysis-D57xsIW5.js"></script>
+  <link rel="modulepreload" crossorigin href="/Bi-yixing/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="stylesheet" crossorigin href="/Bi-yixing/assets/consultantAnalysis-CPWcyyvS.css">
+  <link rel="stylesheet" crossorigin href="/Bi-yixing/assets/weizhengke-Dy8bwEct.css">
+  <link rel="stylesheet" crossorigin href="/Bi-yixing/assets/product-analysis-5GBrVD40.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-inner">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-top">
+        <div class="sidebar-brand-icon">BI</div>
+        <div class="sidebar-brand-name">耗材成本看板</div>
+      </div>
+      <div class="sidebar-brand-sub">总览 + 科室三级分析结构</div>
+    </div>
+
+    <div class="nav-label">Overview</div>
+    <button class="nav-home" type="button" onclick="window.location='index.html'">
+      <span class="nav-home-icon"></span>
+      <span>首页总览</span>
+    </button>
+
+    <div class="nav-label">Departments</div>
+    <div class="nav-group" style="border-color:#1A1A1A;">
+      <button class="nav-group-hd" type="button" onclick="window.location='weizhengke.html'" style="background:#1A1A1A;color:#fff;border-radius:14px 14px 0 0;">
+        <span class="nav-group-main">
+          <span class="nav-group-dot" style="background:rgba(255,255,255,0.5);"></span>
+          <span>微整科</span>
+        </span>
+        <span class="nav-toggle" style="background:rgba(255,255,255,0.12);color:#fff;font-size:11px;">总览</span>
+      </button>
+      <div class="nav-group-body">
+        <button class="nav-link" type="button" onclick="window.location='微整科-产品耗占比分析.html'">产品耗占分析</button>
+        <button class="nav-link" type="button" onclick="window.location='微整科-医生耗占分析.html'">医生耗占分析</button>
+        <button class="nav-link active" type="button">咨询耗占分析</button>
+      </div>
+    </div>
+
+    <div class="nav-group collapsed">
+      <button class="nav-group-hd" type="button" onclick="window.location='pifuke.html'">
+        <span class="nav-group-main">
+          <span class="nav-group-dot" style="background:#111827;"></span>
+          <span>皮肤科</span>
+        </span>
+        <span class="nav-toggle" style="font-size:11px;color:#999;">进入</span>
+      </button>
+      <div class="nav-group-body">
+        <button class="nav-link" type="button">产品耗占分析</button>
+        <button class="nav-link" type="button">医生耗占分析</button>
+        <button class="nav-link" type="button">咨询耗占分析</button>
+      </div>
+    </div>
+
+    <div class="nav-group collapsed">
+      <button class="nav-group-hd" type="button" onclick="toggleNavGroup(this)">
+        <span class="nav-group-main">
+          <span class="nav-group-dot" style="background:#EA580C;"></span>
+          <span>整形科</span>
+        </span>
+        <span class="nav-toggle">+</span>
+      </button>
+      <div class="nav-group-body">
+        <button class="nav-link" type="button">科室总览</button>
+        <button class="nav-link" type="button">产品耗占分析</button>
+        <button class="nav-link" type="button">医生耗占分析</button>
+        <button class="nav-link" type="button">咨询耗占分析</button>
+      </div>
+    </div>
+
+    <div class="nav-tip">
+      当前：微整科 · 咨询耗占分析<br>
+      数据源：Daily-cphc 2026-03-31
+    </div>
+  </div>
+</aside>
+
+<div class="content-shell">
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-icon">📊</div>
+      <div>
+        <div class="brand-name">微整科咨询耗占分析</div>
+        <div class="brand-meta">咨询组维度 · 咨询师搜索 · 异常偏离预警 · 数据更新：2026-03-31 23:59</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="filter-pill">
+        <span class="filter-label">月份</span>
+        <select class="filter-select">
+          <option>2026-03</option>
+          <option>2026-02</option>
+          <option>2026-01</option>
+        </select>
+      </div>
+      <button class="btn btn-ghost">⬇ 导出报告</button>
+      <button class="btn btn-dark" onclick="openConsultantAI()">✦ AI 助手</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="breadcrumb">
+      <a href="index.html">首页总览</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="weizhengke.html">微整科</a>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-current">咨询耗占分析</span>
+    </div>
+
+    <div class="section-hd">
+      <div class="section-num">1</div>
+      <span class="section-title">耗占比对比</span>
+      <span class="section-sub">按咨询组及个人维度展示月度耗占比</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="grid-4 consultant-kpi-grid">
+      <div id="consultant-group-grid" class="consultant-group-grid"></div>
+      <div id="consultant-kpi-search" class="kpi-card consultant-search-card">
+        <div class="consultant-search-head">
+          <div class="consultant-search-title">咨询师搜索</div>
+          <label class="consultant-search-input-wrap" for="consultant-kpi-search-input">
+            <span>⌕</span>
+            <input id="consultant-kpi-search-input" class="consultant-search-input" type="search" placeholder="搜索咨询师...">
+          </label>
+        </div>
+        <div id="consultant-kpi-result"></div>
+      </div>
+    </div>
+
+    <div id="consultant-anomaly-heading" class="section-hd">
+      <div class="section-num red">2</div>
+      <span class="section-title">异常预警</span>
+      <span class="section-sub">咨询个人异常耗占比监控</span>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="consultant-anomaly-layout">
+      <div id="consultant-anomaly-search" class="kpi-card consultant-search-card consultant-search-panel">
+        <div class="consultant-search-head">
+          <div class="consultant-search-title">咨询师搜索</div>
+          <label class="consultant-search-input-wrap" for="consultant-anomaly-search-input">
+            <span>⌕</span>
+            <input id="consultant-anomaly-search-input" class="consultant-search-input" type="search" placeholder="搜索咨询师...">
+          </label>
+        </div>
+        <div class="consultant-search-empty">
+          <div class="search-lens">⌕</div>
+          <div>请在该卡片右上角搜索咨询师</div>
+        </div>
+      </div>
+
+      <div>
+        <div id="consultant-anomaly-list" class="consultant-anomaly-list"></div>
+        <div id="consultant-anomaly-empty" class="consultant-empty-state" hidden>暂无匹配咨询师</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="ai-float" type="button" onclick="openConsultantAI()">✦ AI 助手</button>
+
+
+</body>
+</html>
