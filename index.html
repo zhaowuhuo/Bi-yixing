@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>耗材成本经营总览（侧边栏方案图）</title>
+<template id="__bundler_thumbnail" data-bg-color="#F2F3F5">
+  <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="28" height="80" fill="#1A1A1A"/>
+    <rect x="4" y="6" width="20" height="10" rx="3" fill="rgba(255,255,255,0.15)"/>
+    <rect x="4" y="20" width="20" height="5" rx="2" fill="rgba(255,255,255,0.1)"/>
+    <rect x="4" y="27" width="20" height="5" rx="2" fill="rgba(255,255,255,0.1)"/>
+    <rect x="4" y="34" width="20" height="5" rx="2" fill="rgba(255,255,255,0.07)"/>
+    <rect x="28" y="0" width="92" height="11" fill="#fff"/>
+    <rect x="30" y="14" width="19" height="17" rx="2" fill="#fff" stroke="#E5E5E5" stroke-width="0.5"/>
+    <rect x="32" y="22" width="9" height="3" rx="1" fill="#E53E3E"/>
+    <rect x="52" y="14" width="19" height="17" rx="2" fill="#fff" stroke="#E5E5E5" stroke-width="0.5"/>
+    <rect x="54" y="22" width="9" height="3" rx="1" fill="#E53E3E"/>
+    <rect x="74" y="14" width="19" height="17" rx="2" fill="#fff" stroke="#E5E5E5" stroke-width="0.5"/>
+    <rect x="76" y="22" width="9" height="3" rx="1" fill="#16A34A"/>
+    <rect x="96" y="14" width="20" height="17" rx="2" fill="#fff" stroke="#E5E5E5" stroke-width="0.5"/>
+    <rect x="98" y="22" width="9" height="3" rx="1" fill="#E53E3E"/>
+    <rect x="30" y="35" width="27" height="38" rx="2" fill="#fff" stroke="#E5E5E5" stroke-width="0.5"/>
+    <rect x="32" y="38" width="14" height="2" rx="1" fill="#1A1A1A"/>
+    <rect x="32" y="43" width="23" height="2" rx="1" fill="#F0F0F0"/>
+    <rect x="32" y="47" width="23" height="2" rx="1" fill="#F0F0F0"/>
+    <rect x="32" y="51" width="23" height="2" rx="1" fill="#F0F0F0"/>
+    <rect x="59" y="35" width="27" height="38" rx="2" fill="#fff" stroke="#E5E5E5" stroke-width="0.5"/>
+    <rect x="61" y="38" width="14" height="2" rx="1" fill="#1A1A1A"/>
+    <rect x="61" y="43" width="10" height="8" rx="1" fill="#FEF2F2"/>
+    <rect x="61" y="53" width="23" height="2" rx="1" fill="#F0F0F0"/>
+    <rect x="61" y="57" width="23" height="2" rx="1" fill="#F0F0F0"/>
+    <rect x="88" y="35" width="30" height="38" rx="2" fill="#fff" stroke="#E5E5E5" stroke-width="0.5"/>
+    <rect x="90" y="38" width="14" height="2" rx="1" fill="#1A1A1A"/>
+    <rect x="90" y="43" width="10" height="8" rx="1" fill="#FEF2F2"/>
+    <rect x="90" y="53" width="26" height="2" rx="1" fill="#F0F0F0"/>
+    <rect x="90" y="57" width="26" height="2" rx="1" fill="#F0F0F0"/>
+  </svg>
+</template>
+<link rel="stylesheet" href="/src/styles/home-overview.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-inner">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-top">
+        <div class="sidebar-brand-icon">BI</div>
+        <div class="sidebar-brand-name">耗材成本看板</div>
+      </div>
+      <div class="sidebar-brand-sub">固定左侧导航</div>
+      <div class="sidebar-brand-sub">总览 + 科室三级分析结构</div>
+    </div>
+
+    <div class="nav-label">Overview</div>
+    <button class="nav-home active" type="button">
+      <span class="nav-home-icon"></span>
+      <span>首页总览</span>
+    </button>
+
+    <div class="nav-label">Departments</div>
+
+    <div class="nav-group">
+      <button class="nav-group-hd" type="button" onclick="window.location='weizhengke.html'">
+        <span class="nav-group-main">
+          <span class="nav-group-dot"></span>
+          <span>微整科</span>
+        </span>
+        <span class="nav-toggle" style="font-size:11px;color:#999;">进入</span>
+      </button>
+      <div class="nav-group-body">
+        <button class="nav-link" type="button" onclick="window.location='weizhengke.html'">产品耗占分析</button>
+        <button class="nav-link" type="button" onclick="window.location='weizhengke.html'">医生耗占分析</button>
+        <button class="nav-link" type="button" onclick="window.location='weizhengke.html'">咨询耗占分析</button>
+      </div>
+    </div>
+
+    <div class="nav-group collapsed">
+      <button class="nav-group-hd" type="button" onclick="toggleNavGroup(this)">
+        <span class="nav-group-main">
+          <span class="nav-group-dot" style="background:#111827;"></span>
+          <span>皮肤科</span>
+        </span>
+        <span class="nav-toggle">+</span>
+      </button>
+      <div class="nav-group-body">
+        <button class="nav-link" type="button">产品耗占分析</button>
+        <button class="nav-link" type="button">医生耗占分析</button>
+        <button class="nav-link" type="button">咨询耗占分析</button>
+      </div>
+    </div>
+
+    <div class="nav-group collapsed">
+      <button class="nav-group-hd" type="button" onclick="toggleNavGroup(this)">
+        <span class="nav-group-main">
+          <span class="nav-group-dot" style="background:#EA580C;"></span>
+          <span>整形科</span>
+        </span>
+        <span class="nav-toggle">+</span>
+      </button>
+      <div class="nav-group-body">
+        <button class="nav-link" type="button">产品耗占分析</button>
+        <button class="nav-link" type="button">医生耗占分析</button>
+        <button class="nav-link" type="button">咨询耗占分析</button>
+      </div>
+    </div>
+
+    <div class="nav-tip">
+      当前效果图展示“首页总览”。
+      <br>
+      二级科室支持折叠展开，三级统一进入产品 / 医生 / 咨询分析页。
+    </div>
+  </div>
+</aside>
+
+<div class="content-shell">
+
+<!-- ══ 顶部导航 ══ -->
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-icon">📊</div>
+    <div>
+      <div class="brand-name">耗材成本经营总览</div>
+      <div class="brand-meta">首页总览 &nbsp;·&nbsp; 数据更新：2026-04-22 08:05 &nbsp;·&nbsp; 本地数据库自动同步</div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div class="filter-pill">
+      <span class="filter-label">月份</span>
+      <select class="filter-select">
+        <option>2026-04</option><option>2026-03</option><option>2026-02</option>
+      </select>
+    </div>
+    <button class="btn btn-ghost">⬇ 导出报告</button>
+    <button class="btn btn-dark" onclick="toggleAI()">✦ AI 助手</button>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ══ 模块一 ══ -->
+<div class="section-hd">
+  <div class="section-num">1</div>
+  <span class="section-title">耗占比对比</span>
+  <span class="section-sub">纯耗材，不含麻醉</span>
+  <div class="section-line"></div>
+</div>
+<div class="grid-4">
+  <div class="kpi-card">
+    <div class="kc-title">机构耗占比</div>
+    <div class="kc-main danger">22.62%</div>
+    <div class="kc-divider"></div>
+    <div class="kc-row"><span class="kc-row-label">较前三期均值</span><span class="kc-val-red">+1.32%</span><span class="badge badge-red" style="margin-left:auto;">▲ 偏高</span></div>
+    <div class="kc-target">目标值：<span>≤21.30%</span></div>
+  </div>
+  <div class="kpi-card">
+    <div class="kc-title"><span class="dept-bold">微整科</span>耗占比</div>
+    <div class="kc-main danger">24.55%</div>
+    <div class="kc-divider"></div>
+    <div class="kc-row"><span class="kc-row-label">较前三期均值</span><span class="kc-val-red">+1.45%</span><span class="badge badge-red" style="margin-left:auto;">▲ 偏高</span></div>
+    <div class="kc-target">目标值：<span>≤23.10%</span></div>
+  </div>
+  <div class="kpi-card">
+    <div class="kc-title"><span class="dept-bold">皮肤科</span>耗占比</div>
+    <div class="kc-main">18.87%</div>
+    <div class="kc-divider"></div>
+    <div class="kc-row"><span class="kc-row-label">较前三期均值</span><span class="kc-val-green">−1.43%</span><span class="badge badge-green" style="margin-left:auto;">▼ 优秀</span></div>
+    <div class="kc-target">目标值：<span>≤20.30%</span></div>
+  </div>
+  <div class="kpi-card">
+    <div class="kc-title"><span class="dept-bold">整形科</span>耗占比</div>
+    <div class="kc-main danger">20.96%</div>
+    <div class="kc-divider"></div>
+    <div class="kc-row"><span class="kc-row-label">较前三期均值</span><span class="kc-val-red">+1.11%</span><span class="badge badge-red" style="margin-left:auto;">▲ 偏高</span></div>
+    <div class="kc-target">目标值：<span>≤19.85%</span></div>
+  </div>
+</div>
+
+<!-- ══ 模块二 ══ -->
+<div class="section-hd">
+  <div class="section-num">2</div>
+  <span class="section-title">综合耗占比对比</span>
+  <span class="section-sub">含麻醉成本</span>
+  <div class="section-line"></div>
+</div>
+<div class="grid-4">
+  <div class="kpi-card">
+    <div class="kc-title">机构总耗占比（含麻醉）</div>
+    <div class="kc-main danger">23.48%</div>
+    <div class="kc-divider"></div>
+    <div class="kc-row"><span class="kc-row-label">较前三期均值</span><span class="kc-val-red">+1.38%</span><span class="badge badge-red" style="margin-left:auto;">▲ 偏高</span></div>
+    <div class="kc-target">目标值：<span>≤22.10%</span></div>
+    <div class="cost-mini-row">
+      <div class="cost-mini"><div class="cost-mini-label">耗材成本</div><div class="cost-mini-val">744.7万</div></div>
+      <div class="cost-mini alert-bg"><div class="cost-mini-label">麻醉成本</div><div class="cost-mini-val red">28.2万</div></div>
+    </div>
+  </div>
+  <div class="kpi-card">
+    <div class="kc-title"><span class="dept-bold">微整科</span>总耗占比（含麻醉）</div>
+    <div class="kc-main danger">24.55%</div>
+    <div class="kc-divider"></div>
+    <div class="kc-row"><span class="kc-row-label">较前三期均值</span><span class="kc-val-red">+1.45%</span><span class="badge badge-red" style="margin-left:auto;">▲ 偏高</span></div>
+    <div class="kc-target">目标值：<span>≤23.10%</span></div>
+    <div class="cost-mini-row">
+      <div class="cost-mini"><div class="cost-mini-label">耗材成本</div><div class="cost-mini-val">468.5万</div></div>
+      <div class="cost-mini"><div class="cost-mini-label">麻醉成本</div><div class="cost-mini-val muted">— 无</div></div>
+    </div>
+  </div>
+  <div class="kpi-card">
+    <div class="kc-title"><span class="dept-bold">皮肤科</span>总耗占比（含麻醉）</div>
+    <div class="kc-main">18.87%</div>
+    <div class="kc-divider"></div>
+    <div class="kc-row"><span class="kc-row-label">较前三期均值</span><span class="kc-val-green">−1.43%</span><span class="badge badge-green" style="margin-left:auto;">▼ 优秀</span></div>
+    <div class="kc-target">目标值：<span>≤20.30%</span></div>
+    <div class="cost-mini-row">
+      <div class="cost-mini"><div class="cost-mini-label">耗材成本</div><div class="cost-mini-val">123.1万</div></div>
+      <div class="cost-mini"><div class="cost-mini-label">麻醉成本</div><div class="cost-mini-val muted">— 无</div></div>
+    </div>
+  </div>
+  <div class="kpi-card">
+    <div class="kc-title"><span class="dept-bold">整形科</span>总耗占比（含麻醉）</div>
+    <div class="kc-main danger">24.82%</div>
+    <div class="kc-divider"></div>
+    <div class="kc-row"><span class="kc-row-label">较前三期均值</span><span class="kc-val-red">+2.02%</span><span class="badge badge-red" style="margin-left:auto;">▲ 偏高</span></div>
+    <div class="kc-target">目标值：<span>≤22.80%</span></div>
+    <div class="cost-mini-row">
+      <div class="cost-mini"><div class="cost-mini-label">耗材成本</div><div class="cost-mini-val">153.1万</div></div>
+      <div class="cost-mini alert-bg"><div class="cost-mini-label">麻醉成本</div><div class="cost-mini-val red">28.2万</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 模块三 ══ -->
+<div class="section-hd">
+  <div class="section-num red">3</div>
+  <span class="section-title">异常预警</span>
+  <span class="section-sub">重点产品 / 医生 / 咨询 维度</span>
+  <div class="section-line"></div>
+</div>
+<div class="grid-3">
+
+  <!-- 微整科 -->
+  <div class="alert-card">
+    <div class="alert-hd"><div class="alert-dept">微整科</div><div class="alert-cnt-badge">共 5 项异常</div></div>
+    <div class="tab-row">
+      <button class="tab-btn on" onclick="switchTab(this,'wei','p')">重点产品</button>
+      <button class="tab-btn"   onclick="switchTab(this,'wei','d')">医生</button>
+      <button class="tab-btn"   onclick="switchTab(this,'wei','a')">咨询</button>
+    </div>
+    <div id="wei-p">
+      <div class="count-panel">
+        <div class="cp-top">
+          <div><div class="cp-big-num">15</div><div class="cp-big-unit">款产品出现异常</div></div>
+          <div class="cp-severity"><div class="cp-severity-label">按严重程度</div><div class="cp-severity-row"><div class="cp-sev-item"><div class="cp-sev-num red">8</div><div class="cp-sev-label">严重 🔴</div></div><div class="cp-sev-item"><div class="cp-sev-num gray">7</div><div class="cp-sev-label">偏高 ⚠️</div></div></div></div>
+        </div>
+        <div class="cp-breakdown"><div class="cp-bd-item"><div class="cp-bd-num">3</div><div class="cp-bd-label">成本率超标</div></div><div class="cp-bd-item"><div class="cp-bd-num">5</div><div class="cp-bd-label">完成度不足</div></div><div class="cp-bd-item"><div class="cp-bd-num gray">7</div><div class="cp-bd-label">双杀预警</div></div></div>
+      </div>
+      <button class="detail-btn">查看全部 15 款异常产品 →</button>
+    </div>
+    <div id="wei-d" style="display:none;" class="alert-list">
+      <div class="alert-item lv-red"><div class="ai-info"><div class="ai-name">张医生</div><div class="ai-sub">胶原·持初 · 单体偏差 -8,200元</div></div><div class="ai-right"><div class="ai-pct red">72.1%</div><div class="ai-tag">成本率 🔴</div></div></div>
+      <div class="alert-item lv-gray"><div class="ai-info"><div class="ai-name">李医生</div><div class="ai-sub">微整除皱 · 单体偏差 -3,400元</div></div><div class="ai-right"><div class="ai-pct gray">55.3%</div><div class="ai-tag">成本率 ⚠️</div></div></div>
+    </div>
+    <div id="wei-a" style="display:none;">
+      <div class="count-panel">
+        <div class="cp-top"><div><div class="cp-big-num">8</div><div class="cp-big-unit">位咨询师出现异常</div></div><div class="cp-severity"><div class="cp-severity-label">按严重程度</div><div class="cp-severity-row"><div class="cp-sev-item"><div class="cp-sev-num red">3</div><div class="cp-sev-label">严重 🔴</div></div><div class="cp-sev-item"><div class="cp-sev-num gray">5</div><div class="cp-sev-label">偏低 ⚠️</div></div></div></div></div>
+        <div class="cp-breakdown"><div class="cp-bd-item"><div class="cp-bd-num">3</div><div class="cp-bd-label">客单严重不足</div></div><div class="cp-bd-item"><div class="cp-bd-num gray">3</div><div class="cp-bd-label">推荐结构异常</div></div><div class="cp-bd-item"><div class="cp-bd-num gray">2</div><div class="cp-bd-label">完成度偏低</div></div></div>
+      </div>
+      <button class="detail-btn">查看全部 8 位异常咨询师 →</button>
+    </div>
+  </div>
+
+  <!-- 皮肤科 -->
+  <div class="alert-card">
+    <div class="alert-hd"><div class="alert-dept">皮肤科</div><div class="alert-cnt-badge">共 8 项异常</div></div>
+    <div class="tab-row">
+      <button class="tab-btn on" onclick="switchTab(this,'pi','p')">重点产品</button>
+      <button class="tab-btn"   onclick="switchTab(this,'pi','d')">医生</button>
+      <button class="tab-btn"   onclick="switchTab(this,'pi','a')">咨询</button>
+    </div>
+    <div id="pi-p">
+      <div class="count-panel">
+        <div class="cp-top"><div><div class="cp-big-num">8</div><div class="cp-big-unit">款产品出现异常</div></div><div class="cp-severity"><div class="cp-severity-label">按严重程度</div><div class="cp-severity-row"><div class="cp-sev-item"><div class="cp-sev-num red">5</div><div class="cp-sev-label">严重 🔴</div></div><div class="cp-sev-item"><div class="cp-sev-num gray">3</div><div class="cp-sev-label">偏高 ⚠️</div></div></div></div></div>
+        <div class="cp-breakdown"><div class="cp-bd-item"><div class="cp-bd-num">2</div><div class="cp-bd-label">成本率超标</div></div><div class="cp-bd-item"><div class="cp-bd-num">4</div><div class="cp-bd-label">完成度不足</div></div><div class="cp-bd-item"><div class="cp-bd-num gray">2</div><div class="cp-bd-label">双杀预警</div></div></div>
+      </div>
+      <button class="detail-btn">查看全部 8 款异常产品 →</button>
+    </div>
+    <div id="pi-d" style="display:none;" class="alert-list">
+      <div class="alert-item lv-red"><div class="ai-info"><div class="ai-name">刘医生</div><div class="ai-sub">热玛吉900发 · 单体偏差 -2,432元</div></div><div class="ai-right"><div class="ai-pct red">58.4%</div><div class="ai-tag">成本率 🔴</div></div></div>
+      <div class="alert-item lv-gray"><div class="ai-info"><div class="ai-name">孙医生</div><div class="ai-sub">超玛吉600发 · 成本率偏高</div></div><div class="ai-right"><div class="ai-pct gray">47.1%</div><div class="ai-tag">成本率 ⚠️</div></div></div>
+    </div>
+    <div id="pi-a" style="display:none;">
+      <div class="count-panel">
+        <div class="cp-top"><div><div class="cp-big-num">5</div><div class="cp-big-unit">位咨询师出现异常</div></div><div class="cp-severity"><div class="cp-severity-label">按严重程度</div><div class="cp-severity-row"><div class="cp-sev-item"><div class="cp-sev-num red">2</div><div class="cp-sev-label">严重 🔴</div></div><div class="cp-sev-item"><div class="cp-sev-num gray">3</div><div class="cp-sev-label">偏低 ⚠️</div></div></div></div></div>
+        <div class="cp-breakdown"><div class="cp-bd-item"><div class="cp-bd-num">2</div><div class="cp-bd-label">客单严重不足</div></div><div class="cp-bd-item"><div class="cp-bd-num gray">2</div><div class="cp-bd-label">推荐结构异常</div></div><div class="cp-bd-item"><div class="cp-bd-num gray">1</div><div class="cp-bd-label">完成度偏低</div></div></div>
+      </div>
+      <button class="detail-btn">查看全部 5 位异常咨询师 →</button>
+    </div>
+  </div>
+
+  <!-- 整形科 -->
+  <div class="alert-card">
+    <div class="alert-hd"><div class="alert-dept">整形科</div><div class="alert-cnt-badge">共 6 项异常</div></div>
+    <div class="tab-row">
+      <button class="tab-btn on" onclick="switchTab(this,'zheng','p')">项目·产品</button>
+      <button class="tab-btn"    onclick="switchTab(this,'zheng','d')">医生</button>
+      <button class="tab-btn"    onclick="switchTab(this,'zheng','a')">咨询</button>
+    </div>
+    <div id="zheng-p">
+      <div class="count-panel">
+        <div class="cp-top"><div><div class="cp-big-num">6</div><div class="cp-big-unit">个项目·产品出现异常</div></div><div class="cp-severity"><div class="cp-severity-label">按严重程度</div><div class="cp-severity-row"><div class="cp-sev-item"><div class="cp-sev-num red">4</div><div class="cp-sev-label">严重 🔴</div></div><div class="cp-sev-item"><div class="cp-sev-num gray">2</div><div class="cp-sev-label">偏高 ⚠️</div></div></div></div></div>
+        <div class="cp-breakdown"><div class="cp-bd-item"><div class="cp-bd-num">2</div><div class="cp-bd-label">成本率超标</div></div><div class="cp-bd-item"><div class="cp-bd-num">3</div><div class="cp-bd-label">完成度不足</div></div><div class="cp-bd-item"><div class="cp-bd-num gray">1</div><div class="cp-bd-label">双杀预警</div></div></div>
+      </div>
+      <button class="detail-btn">查看全部 6 个异常项目·产品 →</button>
+    </div>
+    <div id="zheng-d" style="display:none;" class="alert-list">
+      <div class="alert-item lv-red"><div class="ai-info"><div class="ai-name">吴医生</div><div class="ai-sub">胸部整形·炫彩 · 单体偏差 -13,585元</div></div><div class="ai-right"><div class="ai-pct red">43.2%</div><div class="ai-tag">成本率 🔴</div></div></div>
+      <div class="alert-item lv-red"><div class="ai-info"><div class="ai-name">周医生</div><div class="ai-sub">鼻部整形·立秀 · 成本率偏高</div></div><div class="ai-right"><div class="ai-pct red">38.1%</div><div class="ai-tag">成本率 🔴</div></div></div>
+      <div class="alert-item lv-gray"><div class="ai-info"><div class="ai-name">郑医生</div><div class="ai-sub">胸部整形·曼托尊贵 · 单体偏差 -5,200元</div></div><div class="ai-right"><div class="ai-pct gray">45.4%</div><div class="ai-tag">成本率 ⚠️</div></div></div>
+    </div>
+    <div id="zheng-a" style="display:none;">
+      <div class="count-panel">
+        <div class="cp-top"><div><div class="cp-big-num">4</div><div class="cp-big-unit">位咨询师出现异常</div></div><div class="cp-severity"><div class="cp-severity-label">按严重程度</div><div class="cp-severity-row"><div class="cp-sev-item"><div class="cp-sev-num red">2</div><div class="cp-sev-label">严重 🔴</div></div><div class="cp-sev-item"><div class="cp-sev-num gray">2</div><div class="cp-sev-label">偏低 ⚠️</div></div></div></div></div>
+        <div class="cp-breakdown"><div class="cp-bd-item"><div class="cp-bd-num">2</div><div class="cp-bd-label">客单严重不足</div></div><div class="cp-bd-item"><div class="cp-bd-num gray">1</div><div class="cp-bd-label">推荐结构异常</div></div><div class="cp-bd-item"><div class="cp-bd-num gray">1</div><div class="cp-bd-label">完成度偏低</div></div></div>
+      </div>
+      <button class="detail-btn">查看全部 4 位异常咨询师 →</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══ 模块四：目标达成 ══ -->
+<div class="section-hd">
+  <div class="section-num">4</div>
+  <span class="section-title">目标达成情况（阶段目标）</span>
+  <span class="section-sub">截至 2026-04-22 · 按完成度升序排列</span>
+  <div class="section-line"></div>
+</div>
+<div class="grid-3" style="margin-bottom:80px;">
+
+  <!-- ── 微整科：支数阶段完成 ── -->
+  <div class="target-card">
+    <div class="tc-hd">
+      <div><div class="tc-dept">微整科</div><div class="tc-sub">支数阶段完成情况</div></div>
+      <div class="tc-summary"><div class="tc-total-num">37</div><div class="tc-total-label">款产品参与考核</div></div>
+    </div>
+    <div class="tier-list">
+      <div class="tier-row t-red" onclick="toggleList('wei-low')">
+        <div class="tier-label"><div class="tier-dot"></div><div class="tier-range">50% 以下</div></div>
+        <div class="tier-bar-wrap"><div class="tier-bar-track"><div class="tier-bar-fill" style="width:8%;"></div></div></div>
+        <div class="tier-right"><div class="tier-count">3</div><div class="tier-unit">款 · 展开 ↓</div></div>
+      </div>
+      <div id="wei-low" class="product-list">
+        <div class="pl-header"><span>产品名</span><span style="text-align:right;">目标</span><span style="text-align:right;">实际</span><span style="text-align:right;">完成度</span><span style="text-align:right;">成本率</span></div>
+        <div class="pl-row"><span class="pl-name">胶原·持初</span><span class="pl-val">20支</span><span class="pl-val">2支</span><span class="pl-pct red">25.0%</span><span class="pl-pct red">68.7%</span></div>
+        <div class="pl-row"><span class="pl-name">微整除皱·A</span><span class="pl-val">15支</span><span class="pl-val">3支</span><span class="pl-pct red">40.0%</span><span class="pl-pct red">59.2%</span></div>
+        <div class="pl-row"><span class="pl-name">微整抗衰·B</span><span class="pl-val">12支</span><span class="pl-val">5支</span><span class="pl-pct red">41.7%</span><span class="pl-pct gray">45.2%</span></div>
+        <button class="collapse-btn" onclick="toggleList('wei-low')">收起 ↑</button>
+      </div>
+
+      <div class="tier-row t-gray" onclick="toggleList('wei-mid')">
+        <div class="tier-label"><div class="tier-dot"></div><div class="tier-range">50% — 80%</div></div>
+        <div class="tier-bar-wrap"><div class="tier-bar-track"><div class="tier-bar-fill" style="width:24%;"></div></div></div>
+        <div class="tier-right"><div class="tier-count">9</div><div class="tier-unit">款 · 展开 ↓</div></div>
+      </div>
+      <div id="wei-mid" class="product-list">
+        <div class="pl-header"><span>产品名</span><span style="text-align:right;">目标</span><span style="text-align:right;">实际</span><span style="text-align:right;">完成度</span><span style="text-align:right;">成本率</span></div>
+        <div class="pl-row"><span class="pl-name">童颜针·C</span><span class="pl-val">18支</span><span class="pl-val">10支</span><span class="pl-pct gray">55.6%</span><span class="pl-pct gray">45.2%</span></div>
+        <div class="pl-row"><span class="pl-name">水光·D</span><span class="pl-val">20支</span><span class="pl-val">12支</span><span class="pl-pct gray">60.0%</span><span class="pl-pct gray">38.1%</span></div>
+        <div class="pl-row"><span class="pl-name">填充·E</span><span class="pl-val">25支</span><span class="pl-val">16支</span><span class="pl-pct gray">64.0%</span><span class="pl-pct gray">42.3%</span></div>
+        <div class="pl-row" style="color:#ABABAB;font-size:11px;justify-content:center;padding:6px;"><span>…另有 6 款，点击查看完整列表</span></div>
+        <button class="collapse-btn" onclick="toggleList('wei-mid')">收起 ↑</button>
+      </div>
+
+      <div class="tier-row t-mid" onclick="toggleList('wei-hi')">
+        <div class="tier-label"><div class="tier-dot"></div><div class="tier-range">80% — 100%</div></div>
+        <div class="tier-bar-wrap"><div class="tier-bar-track"><div class="tier-bar-fill" style="width:27%;"></div></div></div>
+        <div class="tier-right"><div class="tier-count">10</div><div class="tier-unit">款 · 展开 ↓</div></div>
+      </div>
+      <div id="wei-hi" class="product-list">
+        <div class="pl-header"><span>产品名</span><span style="text-align:right;">目标</span><span style="text-align:right;">实际</span><span style="text-align:right;">完成度</span><span style="text-align:right;">成本率</span></div>
+        <div class="pl-row"><span class="pl-name">溶脂·F</span><span class="pl-val">10支</span><span class="pl-val">8支</span><span class="pl-pct" style="color:#888;">80.0%</span><span class="pl-pct gray">33.5%</span></div>
+        <div class="pl-row"><span class="pl-name">提拉·G</span><span class="pl-val">15支</span><span class="pl-val">13支</span><span class="pl-pct" style="color:#888;">86.7%</span><span class="pl-pct gray">29.8%</span></div>
+        <div class="pl-row" style="color:#ABABAB;font-size:11px;justify-content:center;padding:6px;"><span>…另有 8 款，点击查看完整列表</span></div>
+        <button class="collapse-btn" onclick="toggleList('wei-hi')">收起 ↑</button>
+      </div>
+
+      <div class="tier-row t-black" onclick="toggleList('wei-top')">
+        <div class="tier-label"><div class="tier-dot"></div><div class="tier-range">100% 以上</div></div>
+        <div class="tier-bar-wrap"><div class="tier-bar-track"><div class="tier-bar-fill" style="width:40%;"></div></div></div>
+        <div class="tier-right"><div class="tier-count">15</div><div class="tier-unit">款 · 展开 ↓</div></div>
+      </div>
+      <div id="wei-top" class="product-list">
+        <div class="pl-header"><span>产品名</span><span style="text-align:right;">目标</span><span style="text-align:right;">实际</span><span style="text-align:right;">完成度</span><span style="text-align:right;">成本率</span></div>
+        <div class="pl-row"><span class="pl-name">爱贝芙·H</span><span class="pl-val">8支</span><span class="pl-val">10支</span><span class="pl-pct black">125.0%</span><span class="pl-pct gray">28.4%</span></div>
+        <div class="pl-row"><span class="pl-name">少女针·I</span><span class="pl-val">12支</span><span class="pl-val">16支</span><span class="pl-pct black">133.3%</span><span class="pl-pct gray">31.2%</span></div>
+        <div class="pl-row" style="color:#ABABAB;font-size:11px;justify-content:center;padding:6px;"><span>…另有 13 款，点击查看完整列表</span></div>
+        <button class="collapse-btn" onclick="toggleList('wei-top')">收起 ↑</button>
+      </div>
+    </div>
+    <div class="tc-footer"><span class="tc-footer-label">整体阶段完成率</span><span class="tc-footer-val">107.2%</span></div>
+  </div>
+
+  <!-- ── 皮肤科：热玛吉数量完成度 ── -->
+  <div class="target-card">
+    <div class="tc-hd">
+      <div><div class="tc-dept">皮肤科</div><div class="tc-sub">热玛吉数量完成度</div></div>
+      <div class="tc-summary"><div class="tc-total-num">24</div><div class="tc-total-label">台次参与考核</div></div>
+    </div>
+    <div class="tier-list">
+      <div class="tier-row t-red" onclick="toggleList('pi-low')">
+        <div class="tier-label"><div class="tier-dot"></div><div class="tier-range">50% 以下</div></div>
+        <div class="tier-bar-wrap"><div class="tier-bar-track"><div class="tier-bar-fill" style="width:17%;"></div></div></div>
+        <div class="tier-right"><div class="tier-count">4</div><div class="tier-unit">款 · 展开 ↓</div></div>
+      </div>
+      <div id="pi-low" class="product-list">
+        <div class="pl-header"><span>产品名</span><span style="text-align:right;">目标</span><span style="text-align:right;">实际</span><span style="text-align:right;">完成度</span><span style="text-align:right;">成本率</span></div>
+        <div class="pl-row"><span class="pl-name">超玛吉·600发</span><span class="pl-val">29台</span><span class="pl-val">5台</span><span class="pl-pct red">17.2%</span><span class="pl-pct red">47.1%</span></div>
+        <div class="pl-row"><span class="pl-name">少女枪·标准版</span><span class="pl-val">20台</span><span class="pl-val">8台</span><span class="pl-pct red">40.0%</span><span class="pl-pct gray">38.5%</span></div>
+        <div class="pl-row"><span class="pl-name">热玛吉·1200发</span><span class="pl-val">15台</span><span class="pl-val">6台</span><span class="pl-pct red">40.0%</span><span class="pl-pct gray">35.2%</span></div>
+        <div class="pl-row"><span class="pl-name">热玛吉·眼部</span><span class="pl-val">10台</span><span class="pl-val">4台</span><span class="pl-pct red">40.0%</span><span class="pl-pct gray">41.8%</span></div>
+        <button class="collapse-btn" onclick="toggleList('pi-low')">收起 ↑</button>
+      </div>
+
+      <div class="tier-row t-gray" onclick="toggleList('pi-mid')">
+        <div class="tier-label"><div class="tier-dot"></div><div class="tier-range">50% — 80%</div></div>
+        <div class="tier-bar-wrap"><div class="tier-bar-track"><div class="tier-bar-fill" style="width:21%;"></div></div></div>
+        <div class="tier-right"><div class="tier-count">5</div><div class="tier-unit">款 · 展开 ↓</div></div>
+      </div>
+      <div id="pi-mid" class="product-list">
+        <div class="pl-header"><span>产品名</span><span style="text-align:right;">目标</span><span style="text-align:right;">实际</span><span style="text-align:right;">完成度</span><span style="text-align:right;">成本率</span></div>
+        <div class="pl-row"><span class="pl-name">热玛吉·900发</span><span class="pl-val">163台</span><span class="pl-val">65台</span><span class="pl-pct gray">39.9%→57.1%</span><span class="pl-pct red">57.1%</span></div>
+        <div class="pl-row" style="color:#ABABAB;font-size:11px;justify-content:center;padding:6px;"><span>…另有 4 款，点击查看完整列表</span></div>
+        <button class="collapse-btn" onclick="toggleList('pi-mid')">收起 ↑</button>
+      </div>
+
+      <div class="tier-row t-mid" onclick="toggleList('pi-hi')">
+        <div class="tier-label"><div class="tier-dot"></div><div class="tier-range">80% — 100%</div></div>
+        <div class="tier-bar-wrap"><div class="tier-bar-track"><div class="tier-bar-fill" style="width:25%;"></div></div></div>
+        <div class="tier-right"><div class="tier-count">6</div><div class="tier-unit">款 · 展开 ↓</div></div>
+      </div>
+      <div id="pi-hi" class="product-list">
+        <div class="pl-header"><span>产品名</span><span style="text-align:right;">目标</span><span style="text-align:right;">实际</span><span style="text-align:right;">完成度</span><span style="text-align:right;">成本率</span></div>
+        <div class="pl-row"><span class="pl-name">热玛吉·面部标准</span><span class="pl-val">20台</span><span class="pl-val">17台</span><span class="pl-pct" style="color:#888;">85.0%</span><span class="pl-pct gray">32.1%</span></div>
+        <div class="pl-row"><span class="pl-name">超声炮·提升版</span><span class="pl-val">15台</span><span class="pl-val">13台</span><span class="pl-pct" style="color:#888;">86.7%</span><span class="pl-pct gray">29.4%</span></div>
+        <div class="pl-row" style="color:#ABABAB;font-size:11px;justify-content:center;padding:6px;"><span>…另有 4 款，点击查看完整列表</span></div>
+        <button class="collapse-btn" onclick="toggleList('pi-hi')">收起 ↑</button>
+      </div>
+
+      <div class="tier-row t-black" onclick="toggleList('pi-top')">
+        <div class="tier-label"><div class="tier-dot"></div><div class="tier-range">100% 以上</div></div>
+        <div class="tier-bar-wrap"><div class="tier-bar-track"><div class="tier-bar-fill" style="width:38%;"></div></div></div>
+        <div class="tier-right"><div class="tier-count">9</div><div class="tier-unit">款 · 展开 ↓</div></div>
+      </div>
+      <div id="pi-top" class="product-list">
+        <div class="pl-header"><span>产品名</span><span style="text-align:right;">目标</span><span style="text-align:right;">实际</span><span style="text-align:right;">完成度</span><span style="text-align:right;">成本率</span></div>
+        <div class="pl-row"><span class="pl-name">热玛吉·眼周精准</span><span class="pl-val">8台</span><span class="pl-val">12台</span><span class="pl-pct black">150.0%</span><span class="pl-pct gray">28.3%</span></div>
+        <div class="pl-row"><span class="pl-name">少女枪·升级版</span><span class="pl-val">10台</span><span class="pl-val">14台</span><span class="pl-pct black">140.0%</span><span class="pl-pct gray">31.5%</span></div>
+        <div class="pl-row" style="color:#ABABAB;font-size:11px;justify-content:center;padding:6px;"><span>…另有 7 款，点击查看完整列表</span></div>
+        <button class="collapse-btn" onclick="toggleList('pi-top')">收起 ↑</button>
+      </div>
+    </div>
+    <div class="tc-footer"><span class="tc-footer-label">整体阶段完成率</span><span class="tc-footer-val bad">86.4%</span></div>
+  </div>
+
+  <!-- ── 整形科：胸部整形·炫彩 阶段完成（真实数据）── -->
+  <div class="target-card">
+    <div class="tc-hd">
+      <div><div class="tc-dept">整形科</div><div class="tc-sub">胸部整形 · 炫彩 阶段完成度</div></div>
+      <div class="tc-summary"><div class="tc-total-num">22</div><div class="tc-total-label">款产品参与考核</div></div>
+    </div>
+    <div class="tier-list">
+
+      <!-- 0%（未开始）：8款 — 最先显示 -->
+      <div class="tier-row t-red" onclick="toggleList('zh-zero')">
+        <div class="tier-label"><div class="tier-dot"></div><div class="tier-range">0%（未开始）</div></div>
+        <div class="tier-bar-wrap"><div class="tier-bar-track"><div class="tier-bar-fill" style="width:36%;"></div></div></div>
+        <div class="tier-right"><div class="tier-count">8</div><div class="tier-unit">款 · 展开 ↓</div></div>
+      </div>
+      <div id="zh-zero" class="product-list">
+        <div class="pl-header"><span>产品名</span><span style="text-align:right;">目标</span><span style="text-align:right;">实际</span><span style="text-align:right;">完成度</span><span style="text-align:right;">成本率</span></div>
+        <!-- 胸部：优丝俪、璀璨、铂蕴 / 鼻部：超体、ADM、旭尔挺、英普朗特(0支)、射极峰凤凰 -->
+        <div class="pl-row"><span class="pl-name">胸部·优丝俪</span><span class="pl-val">2台</span><span class="pl-val">0台</span><span class="pl-pct red">0.0%</span><span class="pl-pct gray">—</span></div>
+        <div class="pl-row"><span class="pl-name">胸部·璀璨</span><span class="pl-val">5台</span><span class="pl-val">0台</span><span class="pl-pct red">0.0%</span><span class="pl-pct gray">—</span></div>
+        <div class="pl-row"><span class="pl-name">胸部·铂蕴</span><span class="pl-val">4台</span><span class="pl-val">0台</span><span class="pl-pct red">0.0%</span><span class="pl-pct gray">—</span></div>
+        <div class="pl-row"><span class="pl-name">鼻部·超体</span><span class="pl-val">5台</span><span class="pl-val">0台</span><span class="pl-pct red">0.0%</span><span class="pl-pct gray">—</span></div>
+        <div class="pl-row"><span class="pl-name">鼻部·ADM</span><span class="pl-val">5台</span><span class="pl-val">0台</span><span class="pl-pct red">0.0%</span><span class="pl-pct gray">—</span></div>
+        <div class="pl-row"><span class="pl-name">鼻部·旭尔挺</span><span class="pl-val">8台</span><span class="pl-val">0台</span><span class="pl-pct red">0.0%</span><span class="pl-pct gray">—</span></div>
+        <div class="pl-row"><span class="pl-name">鼻部·射极峰凤凰</span><span class="pl-val">2台</span><span class="pl-val">0台</span><span class="pl-pct red">0.0%</span><span class="pl-pct gray">—</span></div>
+        <div class="pl-row"><span class="pl-name">鼻部·英普朗特</span><span class="pl-val">10台</span><span class="pl-val">1台</span><span class="pl-pct red">25.0%*</span><span class="pl-pct gray">—</span></div>
+        <button class="collapse-btn" onclick="toggleList('zh-zero')">收起 ↑</button>
+      </div>
+
+      <!-- 0%—50%：4款 -->
+      <div class="tier-row t-gray" onclick="toggleList('zh-low')">
+        <div class="tier-label"><div class="tier-dot"></div><div class="tier-range">0% — 50%</div></div>
+        <div class="tier-bar-wrap"><div class="tier-bar-track"><div class="tier-bar-fill" style="width:18%;"></div></div></div>
+        <div class="tier-right"><div class="tier-count">4</div><div class="tier-unit">款 · 展开 ↓</div></div>
+      </div>
+      <div id="zh-low" class="product-list">
+        <div class="pl-header"><span>产品名</span><span style="text-align:right;">目标</span><span style="text-align:right;">实际</span><span style="text-align:right;">完成度</span><span style="text-align:right;">成本率</span></div>
+        <!-- 曼托光面圆形75%→归此区间 / 射极峰专供8 25% / 菲思挺50% / 射极峰优雅6 87.5%→下区间 -->
+        <!-- 实际落在0-50%：射极峰专供8(25%)、英普朗特(25%)已归上、Motiva梦萦(60%)→下、绚耀(66.7%)→下 -->
+        <!-- 重新按数量完成度分组：
+             0%: 优丝俪0、璀璨0、铂蕴0、超体0、ADM0、旭尔挺0、凤凰0 = 7款
+             25%: 英普朗特25%、射极峰专供8 25% = 2款  → 0-50%区间
+             50%: 菲思挺50%、星钻50% = 2款            → 50%区间单独或并入50-80%
+             60%: Motiva梦萦60%                        → 50-80%
+             66.7%: 绚耀66.7%                          → 50-80%
+             75%: 曼托光面圆形75%                      → 50-80%
+             83.3%: 炫彩83.3%                          → 80-100%
+             87.5%: 射极峰优雅6 87.5%                  → 80-100%
+             92.5%: 立秀92.5%                          → 80-100%
+             100%: 舒铂100%                            → 100%+
+             108%: 曼托尊贵108%                        → 100%+
+             119.4%: 射极峰专供5 119.4%               → 100%+
+             125%: 曼托毛面圆形125%                    → 100%+
+             150%: 曼托尊贵150%（数量）                → 100%+
+             154.7%: 星熠154.7%                        → 100%+
+        -->
+        <div class="pl-row"><span class="pl-name">鼻部·射极峰专供8</span><span class="pl-val">10台</span><span class="pl-val">1台</span><span class="pl-pct red">25.0%</span><span class="pl-pct gray">22.8%</span></div>
+        <div class="pl-row"><span class="pl-name">鼻部·英普朗特</span><span class="pl-val">10台</span><span class="pl-val">1台</span><span class="pl-pct red">25.0%</span><span class="pl-pct gray">—</span></div>
+        <div class="pl-row"><span class="pl-name">胸部·星钻</span><span class="pl-val">15台</span><span class="pl-val">3台</span><span class="pl-pct red">50.0%</span><span class="pl-pct gray">39.1%</span></div>
+        <div class="pl-row"><span class="pl-name">鼻部·菲思挺</span><span class="pl-val">5台</span><span class="pl-val">1台</span><span class="pl-pct red">50.0%</span><span class="pl-pct gray">26.0%</span></div>
+        <button class="collapse-btn" onclick="toggleList('zh-low')">收起 ↑</button>
+      </div>
+
+      <!-- 50%—80%：5款 -->
+      <div class="tier-row t-mid" onclick="toggleList('zh-mid')">
+        <div class="tier-label"><div class="tier-dot"></div><div class="tier-range">50% — 80%</div></div>
+        <div class="tier-bar-wrap"><div class="tier-bar-track"><div class="tier-bar-fill" style="width:23%;"></div></div></div>
+        <div class="tier-right"><div class="tier-count">5</div><div class="tier-unit">款 · 展开 ↓</div></div>
+      </div>
+      <div id="zh-mid" class="product-list">
+        <div class="pl-header"><span>产品名</span><span style="text-align:right;">目标</span><span style="text-align:right;">实际</span><span style="text-align:right;">完成度</span><span style="text-align:right;">成本率</span></div>
+        <div class="pl-row"><span class="pl-name">胸部·Motiva梦萦</span><span class="pl-val">25台</span><span class="pl-val">6台</span><span class="pl-pct" style="color:#888;">60.0%</span><span class="pl-pct gray">36.7%</span></div>
+        <div class="pl-row"><span class="pl-name">胸部·绚耀</span><span class="pl-val">15台</span><span class="pl-val">4台</span><span class="pl-pct" style="color:#888;">66.7%</span><span class="pl-pct red">49.0%</span></div>
+        <div class="pl-row"><span class="pl-name">胸部·炫彩</span><span class="pl-val">15台</span><span class="pl-val">5台</span><span class="pl-pct" style="color:#888;">83.3%</span><span class="pl-pct gray">40.6%</span></div>
+        <div class="pl-row"><span class="pl-name">胸部·曼托光面圆形</span><span class="pl-val">10台</span><span class="pl-val">3台</span><span class="pl-pct" style="color:#888;">75.0%</span><span class="pl-pct gray">43.3%</span></div>
+        <div class="pl-row"><span class="pl-name">鼻部·射极峰优雅6</span><span class="pl-val">40台</span><span class="pl-val">14台</span><span class="pl-pct" style="color:#888;">87.5%</span><span class="pl-pct gray">20.7%</span></div>
+        <button class="collapse-btn" onclick="toggleList('zh-mid')">收起 ↑</button>
+      </div>
+
+      <!-- 80%—100%：2款 -->
+      <div class="tier-row t-mid" style="opacity:0.75;" onclick="toggleList('zh-hi')">
+        <div class="tier-label"><div class="tier-dot" style="background:#888;"></div><div class="tier-range" style="color:#888;">80% — 100%</div></div>
+        <div class="tier-bar-wrap"><div class="tier-bar-track"><div class="tier-bar-fill" style="width:9%;background:#888;"></div></div></div>
+        <div class="tier-right"><div class="tier-count" style="color:#888;">2</div><div class="tier-unit">款 · 展开 ↓</div></div>
+      </div>
+      <div id="zh-hi" class="product-list">
+        <div class="pl-header"><span>产品名</span><span style="text-align:right;">目标</span><span style="text-align:right;">实际</span><span style="text-align:right;">完成度</span><span style="text-align:right;">成本率</span></div>
+        <div class="pl-row"><span class="pl-name">鼻部·立秀</span><span class="pl-val">100台</span><span class="pl-val">37台</span><span class="pl-pct" style="color:#888;">92.5%</span><span class="pl-pct gray">13.1%</span></div>
+        <div class="pl-row"><span class="pl-name">鼻部·舒铂</span><span class="pl-val">10台</span><span class="pl-val">4台</span><span class="pl-pct" style="color:#888;">100.0%</span><span class="pl-pct gray">23.1%</span></div>
+        <button class="collapse-btn" onclick="toggleList('zh-hi')">收起 ↑</button>
+      </div>
+
+      <!-- 100%以上：3款 -->
+      <div class="tier-row t-black" onclick="toggleList('zh-top')">
+        <div class="tier-label"><div class="tier-dot"></div><div class="tier-range">100% 以上</div></div>
+        <div class="tier-bar-wrap"><div class="tier-bar-track"><div class="tier-bar-fill" style="width:14%;"></div></div></div>
+        <div class="tier-right"><div class="tier-count">3</div><div class="tier-unit">款 · 展开 ↓</div></div>
+      </div>
+      <div id="zh-top" class="product-list">
+        <div class="pl-header"><span>产品名</span><span style="text-align:right;">目标</span><span style="text-align:right;">实际</span><span style="text-align:right;">完成度</span><span style="text-align:right;">成本率</span></div>
+        <div class="pl-row"><span class="pl-name">胸部·曼托毛面圆形</span><span class="pl-val">4台</span><span class="pl-val">2台</span><span class="pl-pct black">125.0%</span><span class="pl-pct gray">32.1%</span></div>
+        <div class="pl-row"><span class="pl-name">胸部·曼托尊贵</span><span class="pl-val">15台</span><span class="pl-val">9台</span><span class="pl-pct black">150.0%</span><span class="pl-pct gray">45.4%</span></div>
+        <div class="pl-row"><span class="pl-name">胸部·星熠</span><span class="pl-val">35台</span><span class="pl-val">28台</span><span class="pl-pct black">200.0%</span><span class="pl-pct gray">42.7%</span></div>
+        <button class="collapse-btn" onclick="toggleList('zh-top')">收起 ↑</button>
+      </div>
+
+    </div>
+    <div class="tc-footer">
+      <span class="tc-footer-label">整体数量阶段完成率</span>
+      <span class="tc-footer-val bad">68.7%</span>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+<!-- ══ AI浮动 ══ -->
+<button class="ai-float" onclick="toggleAI()">✦ AI 分析助手</button>
+<div class="ai-panel" id="aiPanel">
+  <div class="ai-panel-hd">
+    <span class="ai-panel-title">✦ AI 耗材分析助手</span>
+    <button class="ai-panel-close" onclick="toggleAI()">✕</button>
+  </div>
+  <div class="ai-summary">
+    <div class="ai-summary-title">今日自动摘要</div>
+    整形科 8 款产品尚未开始执行（0%），炫彩完成度 83.3% 但单体偏差 -9,439，建议优先核查。皮肤科热玛吉整体完成率 86.4%，超玛吉600发仅 17.2%，需关注。
+  </div>
+  <div class="ai-quick">
+    <button class="ai-qbtn">整形科未开始产品分析</button>
+    <button class="ai-qbtn">炫彩单体偏差原因</button>
+    <button class="ai-qbtn">生成月度报告</button>
+    <button class="ai-qbtn">给出优化建议</button>
+  </div>
+  <div class="ai-divider"></div>
+  <div class="ai-input-row">
+    <input class="ai-input" type="text" placeholder="输入问题，例如：哪个科室最需要关注？" />
+    <button class="ai-send">发送</button>
+  </div>
+</div>
+
+<script type="module" src="/src/scripts/home-overview.js"></script>
+</body>
+</html>
